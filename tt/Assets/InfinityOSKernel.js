@@ -666,7 +666,7 @@ DrawingAndSnappingModule.prototype.initStrokePool = function() {
         var seg = global.scene.createSceneObject("Stroke_Segment_" + i);
         var vis = seg.createComponent("Component.RenderMeshVisual");
         if (this.kernel.boxMesh) vis.mesh = this.kernel.boxMesh;
-        if (this.kernel.pbrMaterial) vis.mainMaterial = this.kernel.pbrMaterial; vis.material = this.kernel.pbrMaterial;
+        if (this.kernel.pbrMaterial) { var m = (typeof this.kernel.pbrMaterial.clone === "function") ? this.kernel.pbrMaterial.clone() : this.kernel.pbrMaterial; vis.mainMaterial = m; vis.material = m; }
         seg.getTransform().setWorldScale(new vec3(0.3, 0.3, 0.3));
         this.applyColor(seg, new vec4(0.0, 0.94, 1.0, 0.9));
         seg.enabled = false;
@@ -903,7 +903,7 @@ function NoteEditorKeyboard(kernelState) {
         ["TAB", "Z", "X", "C", "V", "B", "N", "M", "SPACE", "SAVE"]
     ];
 
-    this.initUI();
+    this.uiInitialized = false;
 }
 
 NoteEditorKeyboard.prototype.initUI = function() {
@@ -911,7 +911,7 @@ NoteEditorKeyboard.prototype.initUI = function() {
     this.easelObj = global.scene.createSceneObject("Editor_Easel_Backplate");
     var visual = this.easelObj.createComponent("Component.RenderMeshVisual");
     if (this.kernel.boxMesh) visual.mesh = this.kernel.boxMesh;
-    if (this.kernel.pbrMaterial) visual.mainMaterial = this.kernel.pbrMaterial; visual.material = this.kernel.pbrMaterial;
+    if (this.kernel.pbrMaterial) { var m = (typeof this.kernel.pbrMaterial.clone === "function") ? this.kernel.pbrMaterial.clone() : this.kernel.pbrMaterial; visual.mainMaterial = m; visual.material = m; }
     this.easelObj.getTransform().setWorldPosition(new vec3(0.0, 6.5, -64.0));
     this.easelObj.getTransform().setWorldScale(new vec3(32.0, 14.0, 0.4));
     this.applyColor(this.easelObj, new vec4(0.04, 0.08, 0.16, 0.95));
@@ -929,7 +929,7 @@ NoteEditorKeyboard.prototype.initUI = function() {
     this.keyboardDeck = global.scene.createSceneObject("Editor_Keyboard_Deck");
     var kbVisual = this.keyboardDeck.createComponent("Component.RenderMeshVisual");
     if (this.kernel.boxMesh) kbVisual.mesh = this.kernel.boxMesh;
-    if (this.kernel.pbrMaterial) kbVisual.mainMaterial = this.kernel.pbrMaterial; kbVisual.material = this.kernel.pbrMaterial;
+    if (this.kernel.pbrMaterial) { var m = (typeof this.kernel.pbrMaterial.clone === "function") ? this.kernel.pbrMaterial.clone() : this.kernel.pbrMaterial; kbVisual.mainMaterial = m; kbVisual.material = m; }
     this.keyboardDeck.getTransform().setWorldPosition(new vec3(0.0, -4.5, -58.0));
     this.keyboardDeck.getTransform().setWorldScale(new vec3(36.0, 11.0, 0.4));
     this.keyboardDeck.getTransform().setLocalRotation(quat.fromEulerAngles(22.0 * Math.PI / 180.0, 0, 0));
@@ -948,7 +948,7 @@ NoteEditorKeyboard.prototype.initUI = function() {
             var kObj = global.scene.createSceneObject("Keycap_" + keyChar + "_" + r + "_" + c);
             var kVis = kObj.createComponent("Component.RenderMeshVisual");
             if (this.kernel.boxMesh) kVis.mesh = this.kernel.boxMesh;
-            if (this.kernel.pbrMaterial) kVis.mainMaterial = this.kernel.pbrMaterial; kVis.material = this.kernel.pbrMaterial;
+            if (this.kernel.pbrMaterial) { var m = (typeof this.kernel.pbrMaterial.clone === "function") ? this.kernel.pbrMaterial.clone() : this.kernel.pbrMaterial; kVis.mainMaterial = m; kVis.material = m; }
 
             var kx = startX + c * stepX;
             var ky = startY + r * stepY;
@@ -1006,6 +1006,10 @@ NoteEditorKeyboard.prototype.setVisible = function(vis) {
 
 NoteEditorKeyboard.prototype.openEditor = function(note) {
     if (!note || !note.cfg) return;
+    if (!this.uiInitialized) {
+        this.initUI();
+        this.uiInitialized = true;
+    }
     this.targetNote = note;
     this.editTitle = note.cfg.title || "UNTITLED";
     this.editBody = note.cfg.body || "";
@@ -1568,7 +1572,9 @@ var state = {
     aiCore: null,
     lastTappedNote: null,
     lastNoteTapTime: 0.0,
-    lastAppliedOpacity: -1.0
+    lastAppliedOpacity: -1.0,
+    workspacePill: null,
+    workspacePillLabel: null
 };
 
 // Touch / Tap Discrimination State (Enhanced with Obsidiar Kinematics)
@@ -1582,7 +1588,7 @@ var touchState = {
     startPos: new vec2(0, 0),
     startTime: 0,
     hasMoved: false,
-    dragThreshold: 0.02, // 2% screen distance threshold
+    dragThreshold: 0.035, // 3.5% screen distance threshold
     tapMaxSec: TAP_MAX_SEC,
     dragThresholdCm: DRAG_THRESHOLD_CM,
     lastDragEndTime: 0,
@@ -1654,7 +1660,11 @@ function getOrCreateObject(name, meshAsset, matAsset) {
         if (meshAsset || matAsset) {
             var visual = obj.createComponent("Component.RenderMeshVisual");
             if (meshAsset) visual.mesh = meshAsset;
-            if (matAsset) { visual.mainMaterial = matAsset; visual.material = matAsset; }
+            if (matAsset) {
+                var instMat = (typeof matAsset.clone === "function") ? matAsset.clone() : matAsset;
+                visual.mainMaterial = instMat;
+                visual.material = instMat;
+            }
         if (state.camera) { try { obj.layer = state.camera.getSceneObject().layer; } catch(e) {} }
         }
         print("[INFINITY BOOT] Procedurally instantiated: " + name);
@@ -1667,7 +1677,7 @@ function getOrCreateText3D(name, defaultText, size, color, renderOrder, disableD
     if (!obj) {
         obj = global.scene.createSceneObject(name);
         var txt = obj.createComponent("Component.Text3D");
-        if (script.textMaterial) { try { txt.mainMaterial = script.textMaterial; } catch(e) {} }
+        if (script.textMaterial && script.textMaterial.mainPass) { try { txt.mainMaterial = script.textMaterial; } catch(e) {} }
         if (state.camera) { try { obj.layer = state.camera.getSceneObject().layer; } catch(e) {} }
         txt.text = defaultText || "";
         if (size) txt.size = size;
@@ -1678,8 +1688,11 @@ function getOrCreateText3D(name, defaultText, size, color, renderOrder, disableD
             if (typeof txt.depthTest === "boolean") txt.depthTest = false;
             if (txt.mainPass) txt.mainPass.depthTest = false;
         }
-        if (color && txt.mainPass && txt.mainPass.baseColor) {
-            txt.mainPass.baseColor = color;
+        if (color) {
+            try {
+                if (txt.textFill) txt.textFill.color = color;
+                if (txt.mainPass && txt.mainPass.baseColor) txt.mainPass.baseColor = color;
+            } catch(e) {}
         }
         print("[INFINITY BOOT] Procedurally instantiated Text3D: " + name);
     }
@@ -1933,11 +1946,22 @@ script.createEvent('OnStartEvent').bind(function() {
     state.voiceHudLabel.getTransform().setWorldPosition(new vec3(0.0, 11.2, -68.3));
 
     // 6. Whiteboard Headers & Subtitles
-    state.headerLabel = getOrCreateText3D("Label_Whiteboard_Header", "INFINITY // THINK WORKSPACE", 11.0, new vec4(0.0, 0.94, 1.0, 1.0));
+    state.headerLabel = getOrCreateText3D("Label_Whiteboard_Header", "INFINITY // QUANTUM STUDY LAB", 11.0, new vec4(0.0, 0.94, 1.0, 1.0));
     state.headerLabel.getTransform().setWorldPosition(new vec3(0, 7.5, -70));
 
-    state.subLabel = getOrCreateText3D("Label_Whiteboard_Sub", "PINCH PLANET TO SWITCH deg DRAG NOTES deg ? PINCH AI TO EXPAND", 5.0, new vec4(1.0, 1.0, 1.0, 0.95));
+    state.subLabel = getOrCreateText3D("Label_Whiteboard_Sub", "TAP NOTE TO CYCLE STATUS • TAP [ ✎ ] TO EDIT • LOOK AWAY TO DIM", 4.6, new vec4(1.0, 1.0, 1.0, 0.95));
     state.subLabel.getTransform().setWorldPosition(new vec3(0, 4.8, -70));
+
+    // 6b. Workspace Status & Quick-Switcher Pill (Decluttered Header HUD)
+    var pillObj = getOrCreateObject("Workspace_Selector_Pill", script.boxMesh, script.pbrMaterial);
+    pillObj.getTransform().setWorldPosition(new vec3(20.0, 7.5, -69.5));
+    pillObj.getTransform().setWorldScale(new vec3(12.0, 2.6, 0.4));
+    applyMaterialStyle(pillObj, null, new vec4(0.06, 0.12, 0.22, 0.94), RENDER_ORDER_CARD);
+
+    var pillLbl = getOrCreateText3D("Label_Workspace_Selector", "[ THINK ▾ ]", 3.4, WORKSPACES["Think"].color, RENDER_ORDER_TEXT, true);
+    pillLbl.getTransform().setWorldPosition(new vec3(20.0, 7.5, -68.8));
+    state.workspacePill = pillObj;
+    state.workspacePillLabel = pillLbl;
 
     // 7. Initialize 4 Spatial Sticky Notes with 15deg Cylindrical Curved Ergonomics
     var ws = WORKSPACES[state.focusedWorkspace];
@@ -1956,11 +1980,21 @@ script.createEvent('OnStartEvent').bind(function() {
         var initRotX = nCfg.baseRotX || 0.0;
         nObj.getTransform().setLocalRotation(quat.fromEulerAngles(initRotX, initRotY, 0.0));
 
-        var noteTex = script[GALAXY_PLANET_CONFIGS["Planet_" + state.focusedWorkspace].texProp];
-        applyMaterialStyle(nObj, noteTex, new vec4(0.08, 0.12, 0.22, 0.94), RENDER_ORDER_CARD, true);
+        applyMaterialStyle(nObj, null, new vec4(0.08, 0.16, 0.28, 0.98), RENDER_ORDER_CARD, true);
 
-        lblObj.getTransform().setWorldPosition(new vec3(nCfg.basePos.x, nCfg.basePos.y, nCfg.basePos.z + 0.8));
+        lblObj.getTransform().setWorldPosition(new vec3(nCfg.basePos.x, nCfg.basePos.y, nCfg.basePos.z + 0.75));
         lblObj.getTransform().setLocalRotation(quat.fromEulerAngles(initRotX, initRotY, 0.0));
+
+        // Action Pill: [ ✎ ] Edit Button directly on top-right of card
+        var editBtn = getOrCreateObject("Button_Edit_" + k, script.boxMesh, script.pbrMaterial);
+        editBtn.getTransform().setWorldScale(new vec3(2.6, 1.4, 0.25));
+        editBtn.getTransform().setWorldPosition(new vec3(nCfg.basePos.x + 4.8, nCfg.basePos.y + 2.8, nCfg.basePos.z + 0.5));
+        editBtn.getTransform().setLocalRotation(quat.fromEulerAngles(initRotX, initRotY, 0.0));
+        applyMaterialStyle(editBtn, null, new vec4(0.0, 0.85, 1.0, 0.90), RENDER_ORDER_CARD);
+
+        var editLbl = getOrCreateText3D("Label_Edit_" + k, "[ ✎ ]", 2.2, new vec4(1.0, 1.0, 1.0, 1.0), RENDER_ORDER_TEXT, true);
+        editLbl.getTransform().setWorldPosition(new vec3(nCfg.basePos.x + 4.8, nCfg.basePos.y + 2.8, nCfg.basePos.z + 0.75));
+        editLbl.getTransform().setLocalRotation(quat.fromEulerAngles(initRotX, initRotY, 0.0));
 
         // Contact shadow grounding plane beneath note (Waveguide physical anchoring)
         var shadowObj = getOrCreateObject("Contact_Shadow_" + k, script.boxMesh, script.pbrMaterial);
@@ -1972,6 +2006,8 @@ script.createEvent('OnStartEvent').bind(function() {
         state.notes.push({
             obj: nObj,
             labelObj: lblObj,
+            editBtn: editBtn,
+            editLabel: editLbl,
             id: nCfg.id,
             cfg: nCfg,
             status: nCfg.status,
@@ -2151,14 +2187,30 @@ function enterFocusMode(workspaceKey) {
         var oldNote = state.notes[cn];
         if (oldNote && oldNote.obj) oldNote.obj.destroy();
         if (oldNote && oldNote.labelObj) oldNote.labelObj.destroy();
+        if (oldNote && oldNote.editBtn) oldNote.editBtn.destroy();
+        if (oldNote && oldNote.editLabel) oldNote.editLabel.destroy();
+        if (oldNote && oldNote.deleteBtn) oldNote.deleteBtn.destroy();
+        if (oldNote && oldNote.deleteLabel) oldNote.deleteLabel.destroy();
         state.notes.splice(cn, 1);
+    }
+
+    // Update compact workspace selector pill
+    if (state.workspacePill && state.workspacePillLabel) {
+        setTextContent(state.workspacePillLabel, "[ " + workspaceKey.toUpperCase() + " ▾ ]", 3.4);
+        var pTxt = getText3D(state.workspacePillLabel);
+        if (pTxt && pTxt.mainPass && pTxt.mainPass.baseColor) {
+            pTxt.mainPass.baseColor = ws.color;
+        }
     }
 
     for (var k in state.planets) {
         var p = state.planets[k];
-        // In deep study focus mode, completely recede / hide celestial dock to eliminate 46deg FOV cockpit clutter
+        // In deep study focus mode, completely hide celestial dock to eliminate 46deg FOV cockpit clutter
         p.targetScale = new vec3(0.01, 0.01, 0.01);
         p.targetPos = new vec3(p.config.basePos.x, p.config.basePos.y + 35.0, p.config.basePos.z - 50.0);
+        if (p.obj) {
+            p.obj.enabled = false;
+        }
         if (state.labels[k]) {
             state.labels[k].enabled = false;
         }
@@ -2191,6 +2243,9 @@ function returnToGalaxy() {
 
     for (var k in state.planets) {
         var p = state.planets[k];
+        if (p.obj) {
+            p.obj.enabled = true;
+        }
         p.targetPos = p.config.basePos;
         p.targetScale = p.config.baseScale;
         if (state.labels[k]) {
@@ -2426,9 +2481,18 @@ script.createEvent('UpdateEvent').bind(function() {
         state.surfaceManager.updateContactShadows();
     }
 
-    // 4. Animate Celestial Planets
+    // 4. Animate Celestial Planets (Only when in Galaxy Overview)
+    var isGalaxy = (state.mode === "GALAXY");
     for (var key in state.planets) {
         var p = state.planets[key];
+        if (p.obj && p.obj.enabled !== isGalaxy) {
+            p.obj.enabled = isGalaxy;
+        }
+        if (state.labels[key] && state.labels[key].enabled !== isGalaxy) {
+            state.labels[key].enabled = isGalaxy;
+        }
+        if (!isGalaxy) continue;
+
         var trans = p.obj.getTransform();
 
         var floatY = Math.sin(state.time * 1.6 + p.orbitOffset) * 0.65;
@@ -2497,7 +2561,19 @@ script.createEvent('UpdateEvent').bind(function() {
         }
 
         if (n.labelObj) {
-            n.labelObj.getTransform().setWorldPosition(new vec3(n.curPos.x, n.curPos.y, n.curPos.z + 0.8));
+            n.labelObj.getTransform().setWorldPosition(new vec3(n.curPos.x, n.curPos.y, n.curPos.z + 0.75));
+        }
+        if (n.editBtn) {
+            n.editBtn.getTransform().setWorldPosition(new vec3(n.curPos.x + 4.8, n.curPos.y + 2.8, n.curPos.z + 0.5));
+        }
+        if (n.editLabel) {
+            n.editLabel.getTransform().setWorldPosition(new vec3(n.curPos.x + 4.8, n.curPos.y + 2.8, n.curPos.z + 0.75));
+        }
+        if (n.deleteBtn) {
+            n.deleteBtn.getTransform().setWorldPosition(new vec3(n.curPos.x - 4.8, n.curPos.y + 2.8, n.curPos.z + 0.5));
+        }
+        if (n.deleteLabel) {
+            n.deleteLabel.getTransform().setWorldPosition(new vec3(n.curPos.x - 4.8, n.curPos.y + 2.8, n.curPos.z + 0.75));
         }
     }
 
@@ -2719,13 +2795,33 @@ function infinityDictateVoiceNote(dictatedText) {
     var spawnPos = new vec3(2.0, 6.5, -66.0);
     newObj.getTransform().setWorldScale(new vec3(13.2, 8.2, 0.5));
     newObj.getTransform().setWorldPosition(spawnPos);
-    applyMaterialStyle(newObj, null, new vec4(0.08, 0.12, 0.22, 0.94));
+    applyMaterialStyle(newObj, null, new vec4(0.08, 0.16, 0.28, 0.98), RENDER_ORDER_CARD, true);
 
-    lblObj.getTransform().setWorldPosition(new vec3(spawnPos.x, spawnPos.y, spawnPos.z + 0.8));
+    lblObj.getTransform().setWorldPosition(new vec3(spawnPos.x, spawnPos.y, spawnPos.z + 0.75));
+
+    var editBtn = getOrCreateObject("Button_Edit_" + newId, script.boxMesh, script.pbrMaterial);
+    editBtn.getTransform().setWorldScale(new vec3(2.6, 1.4, 0.25));
+    editBtn.getTransform().setWorldPosition(new vec3(spawnPos.x + 4.8, spawnPos.y + 2.8, spawnPos.z + 0.5));
+    applyMaterialStyle(editBtn, null, new vec4(0.0, 0.85, 1.0, 0.90), RENDER_ORDER_CARD);
+
+    var editLbl = getOrCreateText3D("Label_Edit_" + newId, "[ ✎ ]", 2.2, new vec4(1.0, 1.0, 1.0, 1.0), RENDER_ORDER_TEXT, true);
+    editLbl.getTransform().setWorldPosition(new vec3(spawnPos.x + 4.8, spawnPos.y + 2.8, spawnPos.z + 0.75));
+
+    var delBtn = getOrCreateObject("Button_Del_" + newId, script.boxMesh, script.pbrMaterial);
+    delBtn.getTransform().setWorldScale(new vec3(2.6, 1.4, 0.25));
+    delBtn.getTransform().setWorldPosition(new vec3(spawnPos.x - 4.8, spawnPos.y + 2.8, spawnPos.z + 0.5));
+    applyMaterialStyle(delBtn, null, new vec4(1.0, 0.3, 0.25, 0.90), RENDER_ORDER_CARD);
+
+    var delLbl = getOrCreateText3D("Label_Del_" + newId, "[ ✕ ]", 2.2, new vec4(1.0, 1.0, 1.0, 1.0), RENDER_ORDER_TEXT, true);
+    delLbl.getTransform().setWorldPosition(new vec3(spawnPos.x - 4.8, spawnPos.y + 2.8, spawnPos.z + 0.75));
 
     var noteEntry = {
         obj: newObj,
         labelObj: lblObj,
+        editBtn: editBtn,
+        editLabel: editLbl,
+        deleteBtn: delBtn,
+        deleteLabel: delLbl,
         id: newId,
         cfg: { id: newId, title: title, body: body, status: "ANCHORED", basePos: spawnPos },
         status: "ANCHORED",
@@ -2856,6 +2952,22 @@ function handleDragMove(screenPos) {
         state.draggedNote.curPos = new vec3(clampedX, clampedY, -68.0);
         state.draggedNote.targetPos = state.draggedNote.curPos;
 
+        if (state.draggedNote.labelObj) {
+            state.draggedNote.labelObj.getTransform().setWorldPosition(new vec3(clampedX, clampedY, -68.0 + 0.75));
+        }
+        if (state.draggedNote.editBtn) {
+            state.draggedNote.editBtn.getTransform().setWorldPosition(new vec3(clampedX + 4.8, clampedY + 2.8, -68.0 + 0.5));
+        }
+        if (state.draggedNote.editLabel) {
+            state.draggedNote.editLabel.getTransform().setWorldPosition(new vec3(clampedX + 4.8, clampedY + 2.8, -68.0 + 0.75));
+        }
+        if (state.draggedNote.deleteBtn) {
+            state.draggedNote.deleteBtn.getTransform().setWorldPosition(new vec3(clampedX - 4.8, clampedY + 2.8, -68.0 + 0.5));
+        }
+        if (state.draggedNote.deleteLabel) {
+            state.draggedNote.deleteLabel.getTransform().setWorldPosition(new vec3(clampedX - 4.8, clampedY + 2.8, -68.0 + 0.75));
+        }
+
         if (state.ftueOnboarding && state.ftueOnboarding.isActive()) {
             state.ftueOnboarding.advance(1);
         }
@@ -2960,6 +3072,60 @@ function handleTapOrPinch(screenPos) {
                 state.aiModule.summarizeKnowledgeGraph(state.focusedWorkspace);
             }
             return;
+        }
+    }
+
+    // 0e. Check Workspace Selector Pill ([ THINK ▾ ])
+    if (state.workspacePill) {
+        var wpPos = state.workspacePill.getTransform().getWorldPosition();
+        var wpHit = raycast3D(screenPos, wpPos, 8.0);
+        if (wpHit.hit) {
+            triggerAudioRipple(wpPos);
+            var wsOrder = ["Think", "Create", "Learn", "Store", "Explore"];
+            var curWsIdx = wsOrder.indexOf(state.focusedWorkspace || "Think");
+            var nextWs = wsOrder[(curWsIdx + 1) % wsOrder.length];
+            enterFocusMode(nextWs);
+            return;
+        }
+    }
+
+    // 0f. Check Note Action Pills ([ ✎ EDIT ] and [ ✕ DELETE ])
+    for (var a = 0; a < state.notes.length; a++) {
+        var an = state.notes[a];
+        if (an.editBtn) {
+            var ebPos = an.editBtn.getTransform().getWorldPosition();
+            var ebHit = raycast3D(screenPos, ebPos, 3.5);
+            if (ebHit.hit) {
+                triggerAudioRipple(ebPos);
+                if (state.noteEditor) {
+                    state.noteEditor.openEditor(an);
+                    if (state.voiceHud && state.voiceHudLabel) {
+                        setTextContent(state.voiceHudLabel, "[ ✦ 3D NOTE EDITOR OPENED ]", 4.0);
+                        applyMaterialStyle(state.voiceHud, null, new vec4(0.0, 0.94, 1.0, 0.95));
+                        state.voiceHudTimer = 2.5;
+                    }
+                }
+                return;
+            }
+        }
+        if (an.deleteBtn) {
+            var dbPos = an.deleteBtn.getTransform().getWorldPosition();
+            var dbHit = raycast3D(screenPos, dbPos, 3.5);
+            if (dbHit.hit) {
+                triggerAudioRipple(dbPos);
+                if (an.obj) an.obj.destroy();
+                if (an.labelObj) an.labelObj.destroy();
+                if (an.editBtn) an.editBtn.destroy();
+                if (an.editLabel) an.editLabel.destroy();
+                if (an.deleteBtn) an.deleteBtn.destroy();
+                if (an.deleteLabel) an.deleteLabel.destroy();
+                state.notes.splice(a, 1);
+                if (state.voiceHud && state.voiceHudLabel) {
+                    setTextContent(state.voiceHudLabel, "[ ✦ NOTE REMOVED ]", 4.0);
+                    state.voiceHudTimer = 2.0;
+                }
+                return;
+            }
         }
     }
 

@@ -283,7 +283,7 @@
 - !<ScriptComponent/ffffffff-0000-4000-8000-000000000002>
   PrefabRemaps:
     []
-  Name: InfinityOSKernel
+  Name: InfinityKernel
   Enabled: true
   ScriptAsset: !<reference> a87d12f4-7128-4ce6-91d1-678239e248b1
   ScriptInputsDefault:

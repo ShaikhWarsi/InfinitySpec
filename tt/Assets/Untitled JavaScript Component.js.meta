@@ -1,20 +1,20 @@
-- !<AssetImportMetadata/1071c968-45c8-4827-8d7b-b19f0232db20>
+- !<AssetImportMetadata/81186908-9bda-40e0-8472-d28858220485>
   ImportedAssetIds:
-    JavaScriptAsset: !<reference> 0559680b-0102-4aef-b1ed-1d3bf45bb01f
+    JavaScriptAsset: !<reference> b7846a84-1b0b-4051-913b-12155eb5c16b
   ImporterName: JavaScriptAssetImporter
-  PrimaryAsset: !<reference> 0559680b-0102-4aef-b1ed-1d3bf45bb01f
+  PrimaryAsset: !<reference> b7846a84-1b0b-4051-913b-12155eb5c16b
   PackageType: NotAPackage
   LegacyPackagePolicy: ~
   ExtraData:
     {}
   AssetDataMap:
-    JavaScriptAsset: !<own> 6d2c823b-219b-4f36-be43-93ff2afab6d4
+    JavaScriptAsset: !<own> 38378aad-97a3-48eb-b029-def1ce9f04bd
   DependentFiles:
     []
   ImporterSettings: !<AssetImporterSettings>
     {}
   CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
-- !<ScriptAssetData/6d2c823b-219b-4f36-be43-93ff2afab6d4>
+- !<ScriptAssetData/38378aad-97a3-48eb-b029-def1ce9f04bd>
   SvgIcon: ""
   SetupScript:
     code: ""
@@ -24,7 +24,7 @@
   VersionPatch: 0
   VersionPrerelease: ""
   UpdateOrder: 0
-  ComponentUid: 187c87ac-97a3-4d16-a182-7dad9b895563
+  ComponentUid: 6c74cb20-113a-4ce0-bfd5-195315a7ee6f
   ExportUid: 00000000-0000-0000-0000-000000000000
   PackagePolicy: CanBeUnpacked
   ScriptInputsHidden:
@@ -55,9 +55,9 @@
       texStore: !<reference.Texture> 00000000-0000-0000-0000-000000000000
       texExplore: !<reference.Texture> 00000000-0000-0000-0000-000000000000
       texWhiteboard: !<reference.Texture> 00000000-0000-0000-0000-000000000000
-      boxMesh: !<reference.Mesh> 00000000-0000-0000-0000-000000000000
-      sphereMesh: !<reference.Mesh> 00000000-0000-0000-0000-000000000000
-      torusMesh: !<reference.Mesh> 00000000-0000-0000-0000-000000000000
+      boxMesh: !<reference.RenderMesh> 00000000-0000-0000-0000-000000000000
+      sphereMesh: !<reference.RenderMesh> 00000000-0000-0000-0000-000000000000
+      torusMesh: !<reference.RenderMesh> 00000000-0000-0000-0000-000000000000
       pbrMaterial: !<reference.Material> 00000000-0000-0000-0000-000000000000
       textMaterial: !<reference.Material> 00000000-0000-0000-0000-000000000000
       chimeAudio: !<reference.AudioTrackAsset> 00000000-0000-0000-0000-000000000000

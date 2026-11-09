@@ -1,4 +1,4 @@
-﻿// @component
+// @component
 // ==============================================================================
 // INFINITY // Spatial Study Copilot & Ambient Knowledge Canvas
 // Lens Studio 5.24 + Snap Spectacles 2024 (6DoF Optical Waveguide AR)
@@ -11,9 +11,9 @@
 // @input Asset.Texture texStore
 // @input Asset.Texture texExplore
 // @input Asset.Texture texWhiteboard
-// @input Asset.Mesh boxMesh
-// @input Asset.Mesh sphereMesh
-// @input Asset.Mesh torusMesh
+// @input Asset.RenderMesh boxMesh
+// @input Asset.RenderMesh sphereMesh
+// @input Asset.RenderMesh torusMesh
 // @input Asset.Material pbrMaterial
 // @input Asset.Material textMaterial
 // @input Asset.AudioTrackAsset chimeAudio
@@ -103,7 +103,7 @@ function updateNativeSIKGestures(dt) {
             }
         }
         if (state.voiceHud && state.voiceHudLabel) {
-            setTextContent(state.voiceHudLabel, "[ ✦ CANVAS MINIMIZED // CLOSED-FIST GESTURE ]", 4.2);
+            setTextContent(state.voiceHudLabel, "[ ? CANVAS MINIMIZED // CLOSED-FIST GESTURE ]", 4.2);
             applyMaterialStyle(state.voiceHud, null, new vec4(0.8, 0.2, 0.4, 0.95));
             state.voiceHudTimer = 2.5;
         }
@@ -173,7 +173,7 @@ function updateNativeSIKGestures(dt) {
                     state.twoHandManipulating = false;
                     state.twoHandTargetNote = null;
                     if (state.voiceHud && state.voiceHudLabel) {
-                        setTextContent(state.voiceHudLabel, "[ ✦ NOTE CRUSHED // REMOVED VIA GESTURE ]", 4.2);
+                        setTextContent(state.voiceHudLabel, "[ ? NOTE CRUSHED // REMOVED VIA GESTURE ]", 4.2);
                         applyMaterialStyle(state.voiceHud, null, new vec4(1.0, 0.3, 0.2, 0.95));
                         state.voiceHudTimer = 2.5;
                     }
@@ -205,7 +205,7 @@ function checkTwoHandFramingGesture() {
                 state.textbookMarker.getTransform().setWorldPosition(new vec3(center.x, deskY, center.z));
             }
             if (state.voiceHud && state.voiceHudLabel) {
-                setTextContent(state.voiceHudLabel, "[ ✦ DUAL-PINCH: TEXTBOOK FRAMED IN ROOM ]", 4.0);
+                setTextContent(state.voiceHudLabel, "[ ? DUAL-PINCH: TEXTBOOK FRAMED IN ROOM ]", 4.0);
                 state.voiceHudTimer = 2.5;
             }
             triggerAudioRipple(center);
@@ -284,13 +284,13 @@ var SPATIAL_STATES = {
 };
 
 // ------------------------------------------------------------------------------
-// 5 Cosmic Workspaces Configuration with 15° Cylindrical Ergonomics
+// 5 Cosmic Workspaces Configuration with 15deg Cylindrical Ergonomics
 // ------------------------------------------------------------------------------
 var WORKSPACES = {
     "Think": {
         name: "Think",
         title: "INFINITY // QUANTUM STUDY LAB",
-        subtitle: "QUANTUM COMPUTING 101 • 6DOF KNOWLEDGE CONSTELLATION",
+        subtitle: "QUANTUM COMPUTING 101 deg 6DOF KNOWLEDGE CONSTELLATION",
         color: new vec4(0.0, 0.94, 1.0, 1.0),
         colorHex: "#00f0ff",
         notes: [
@@ -298,7 +298,7 @@ var WORKSPACES = {
                 id: "StickyNote_Arch",
                 labelId: "Label_Note_Arch",
                 title: "1. QUBIT SUPERPOSITION",
-                body: "• |ψ⟩ = α|0⟩ + β|1⟩\n• Simultaneous state overlap\n[x] Bloch sphere mapped",
+                body: "deg |?? = a|0? + deg|1?\ndeg Simultaneous state overlap\n[x] Bloch sphere mapped",
                 status: "ANCHORED",
                 basePos: new vec3(-15.0, 1.5, -66.5),
                 baseRotY: 14.0 * Math.PI / 180.0
@@ -307,7 +307,7 @@ var WORKSPACES = {
                 id: "StickyNote_Gaze",
                 labelId: "Label_Note_Gaze",
                 title: "2. QUANTUM ENTANGLEMENT",
-                body: "• Bell state |Φ+⟩ = (|00⟩+|11⟩)/√2\n• Non-local correlation\n[x] Spooky action verified",
+                body: "deg Bell state |F+? = (|00?+|11?)/v2\ndeg Non-local correlation\n[x] Spooky action verified",
                 status: "SYNCHRONIZED",
                 basePos: new vec3(0.0, 5.5, -68.5),
                 baseRotY: 0.0
@@ -316,7 +316,7 @@ var WORKSPACES = {
                 id: "StickyNote_Constellation",
                 labelId: "Label_Note_Constellation",
                 title: "3. DECOHERENCE NOISE",
-                body: "• Thermal environment noise\n• T1 relaxation / T2 dephasing\n[!] Error correction required",
+                body: "deg Thermal environment noise\ndeg T1 relaxation / T2 dephasing\n[!] Error correction required",
                 status: "SYNTHESIZING",
                 basePos: new vec3(15.0, 1.0, -66.5),
                 baseRotY: -14.0 * Math.PI / 180.0
@@ -325,7 +325,7 @@ var WORKSPACES = {
                 id: "StickyNote_AI",
                 labelId: "Label_Note_AI",
                 title: "4. SHOR'S ALGORITHM",
-                body: "• Polynomial prime factoring\n• Quantum phase estimation\n[x] Cryptographic speedup",
+                body: "deg Polynomial prime factoring\ndeg Quantum phase estimation\n[x] Cryptographic speedup",
                 status: "ANCHORED",
                 basePos: new vec3(-2.0, -8.5, -67.5),
                 baseRotY: 0.0,
@@ -343,7 +343,7 @@ var WORKSPACES = {
     "Create": {
         name: "Create",
         title: "INFINITY // CREATE WORKSPACE",
-        subtitle: "VOLUMETRIC PROTOTYPING • PROCEDURAL SHADERS",
+        subtitle: "VOLUMETRIC PROTOTYPING deg PROCEDURAL SHADERS",
         color: new vec4(0.72, 0.22, 1.0, 1.0),
         colorHex: "#b838ff",
         notes: [
@@ -351,7 +351,7 @@ var WORKSPACES = {
                 id: "StickyNote_Arch",
                 labelId: "Label_Note_Arch",
                 title: "GLASS TRANSMISSION",
-                body: "• Acrylic PBR backplate\n[x] Additive Cyberpunk glow",
+                body: "deg Acrylic PBR backplate\n[x] Additive Cyberpunk glow",
                 status: "ANCHORED",
                 basePos: new vec3(-15.0, 1.5, -66.5),
                 baseRotY: 14.0 * Math.PI / 180.0
@@ -360,7 +360,7 @@ var WORKSPACES = {
                 id: "StickyNote_Gaze",
                 labelId: "Label_Note_Gaze",
                 title: "UI MESH PIPELINE",
-                body: "• 3D Card Rasterization\n• Status cycling on tap",
+                body: "deg 3D Card Rasterization\ndeg Status cycling on tap",
                 status: "SYNCHRONIZED",
                 basePos: new vec3(0.0, 5.5, -68.5),
                 baseRotY: 0.0
@@ -369,7 +369,7 @@ var WORKSPACES = {
                 id: "StickyNote_Constellation",
                 labelId: "Label_Note_Constellation",
                 title: "ENERGY CORRIDORS",
-                body: "• Luminous beam corridors\n[x] Zero-allocation math",
+                body: "deg Luminous beam corridors\n[x] Zero-allocation math",
                 status: "ANCHORED",
                 basePos: new vec3(15.0, 1.0, -66.5),
                 baseRotY: -14.0 * Math.PI / 180.0
@@ -377,8 +377,8 @@ var WORKSPACES = {
             {
                 id: "StickyNote_AI",
                 labelId: "Label_Note_AI",
-                title: "✦ AI 3D GENERATOR",
-                body: "• Procedural Asset Mesh\n[ ] Dynamic Shader compile",
+                title: "? AI 3D GENERATOR",
+                body: "deg Procedural Asset Mesh\n[ ] Dynamic Shader compile",
                 status: "SYNTHESIZING",
                 basePos: new vec3(-2.0, -8.5, -67.5),
                 baseRotY: 0.0,
@@ -395,7 +395,7 @@ var WORKSPACES = {
     "Learn": {
         name: "Learn",
         title: "INFINITY // LEARN WORKSPACE",
-        subtitle: "BIOMECHANICAL TRACKING • ROTATION INVARIANT AI",
+        subtitle: "BIOMECHANICAL TRACKING deg ROTATION INVARIANT AI",
         color: new vec4(1.0, 0.75, 0.08, 1.0),
         colorHex: "#ffb000",
         notes: [
@@ -403,7 +403,7 @@ var WORKSPACES = {
                 id: "StickyNote_Arch",
                 labelId: "Label_Note_Arch",
                 title: "21-JOINT SKELETON",
-                body: "• XRHand joint poses\n[x] SIK Gaze/Pinch Filter",
+                body: "deg XRHand joint poses\n[x] SIK Gaze/Pinch Filter",
                 status: "ANCHORED",
                 basePos: new vec3(-15.0, 1.5, -66.5),
                 baseRotY: 14.0 * Math.PI / 180.0
@@ -412,7 +412,7 @@ var WORKSPACES = {
                 id: "StickyNote_Gaze",
                 labelId: "Label_Note_Gaze",
                 title: "SPECTACLES SIK",
-                body: "• Gaze ray hysteresis (2cm)\n• Ballistic throw dampening",
+                body: "deg Gaze ray hysteresis (2cm)\ndeg Ballistic throw dampening",
                 status: "SYNCHRONIZED",
                 basePos: new vec3(0.0, 5.5, -68.5),
                 baseRotY: 0.0
@@ -421,7 +421,7 @@ var WORKSPACES = {
                 id: "StickyNote_Constellation",
                 labelId: "Label_Note_Constellation",
                 title: "SEATED COMFORT",
-                body: "• Focus plane at 100cm\n[x] 15-deg downward arc",
+                body: "deg Focus plane at 100cm\n[x] 15-deg downward arc",
                 status: "ANCHORED",
                 basePos: new vec3(15.0, 1.0, -66.5),
                 baseRotY: -14.0 * Math.PI / 180.0
@@ -429,8 +429,8 @@ var WORKSPACES = {
             {
                 id: "StickyNote_AI",
                 labelId: "Label_Note_AI",
-                title: "✦ AI SYNAPSE",
-                body: "• Kinematic drift corrector\n[ ] Adaptive hand smoother",
+                title: "? AI SYNAPSE",
+                body: "deg Kinematic drift corrector\n[ ] Adaptive hand smoother",
                 status: "SYNTHESIZING",
                 basePos: new vec3(-2.0, -8.5, -67.5),
                 baseRotY: 0.0,
@@ -447,7 +447,7 @@ var WORKSPACES = {
     "Store": {
         name: "Store",
         title: "INFINITY // STORE WORKSPACE",
-        subtitle: "CROSS-SESSION PERSISTENCE • COORDINATE VAULT",
+        subtitle: "CROSS-SESSION PERSISTENCE deg COORDINATE VAULT",
         color: new vec4(0.0, 1.0, 0.66, 1.0),
         colorHex: "#00ffaa",
         notes: [
@@ -455,7 +455,7 @@ var WORKSPACES = {
                 id: "StickyNote_Arch",
                 labelId: "Label_Note_Arch",
                 title: "SESSION SERIALIZER",
-                body: "• Local JSON Coordinate Vault\n[x] Instant state restore",
+                body: "deg Local JSON Coordinate Vault\n[x] Instant state restore",
                 status: "ANCHORED",
                 basePos: new vec3(-15.0, 1.5, -66.5),
                 baseRotY: 14.0 * Math.PI / 180.0
@@ -464,7 +464,7 @@ var WORKSPACES = {
                 id: "StickyNote_Gaze",
                 labelId: "Label_Note_Gaze",
                 title: "AUTO-SAVE DEBOUNCE",
-                body: "• 500ms Quiescent timer\n• Zero UI hitching on drop",
+                body: "deg 500ms Quiescent timer\ndeg Zero UI hitching on drop",
                 status: "SYNCHRONIZED",
                 basePos: new vec3(0.0, 5.5, -68.5),
                 baseRotY: 0.0
@@ -473,7 +473,7 @@ var WORKSPACES = {
                 id: "StickyNote_Constellation",
                 labelId: "Label_Note_Constellation",
                 title: "MULTI-SLOT VAULT",
-                body: "• 5 Independent Workspaces\n[x] Per-slot memory isolation",
+                body: "deg 5 Independent Workspaces\n[x] Per-slot memory isolation",
                 status: "ANCHORED",
                 basePos: new vec3(15.0, 1.0, -66.5),
                 baseRotY: -14.0 * Math.PI / 180.0
@@ -481,8 +481,8 @@ var WORKSPACES = {
             {
                 id: "StickyNote_AI",
                 labelId: "Label_Note_AI",
-                title: "✦ AI COMPACTOR",
-                body: "• Graph structure reducer\n[ ] Semantic clustering",
+                title: "? AI COMPACTOR",
+                body: "deg Graph structure reducer\n[ ] Semantic clustering",
                 status: "SYNTHESIZING",
                 basePos: new vec3(-2.0, -8.5, -67.5),
                 baseRotY: 0.0,
@@ -499,7 +499,7 @@ var WORKSPACES = {
     "Explore": {
         name: "Explore",
         title: "INFINITY // EXPLORE GALAXY",
-        subtitle: "INFINITE WHITEBOARD ZOOM • COSMIC NAVIGATION",
+        subtitle: "INFINITE WHITEBOARD ZOOM deg COSMIC NAVIGATION",
         color: new vec4(1.0, 0.0, 0.5, 1.0),
         colorHex: "#ff007f",
         notes: [
@@ -507,7 +507,7 @@ var WORKSPACES = {
                 id: "StickyNote_Arch",
                 labelId: "Label_Note_Arch",
                 title: "CELESTIAL DOCK",
-                body: "• 5 Celestial Planetary Orbs\n[x] 1-pinch fast jump",
+                body: "deg 5 Celestial Planetary Orbs\n[x] 1-pinch fast jump",
                 status: "ANCHORED",
                 basePos: new vec3(-15.0, 1.5, -66.5),
                 baseRotY: 14.0 * Math.PI / 180.0
@@ -516,7 +516,7 @@ var WORKSPACES = {
                 id: "StickyNote_Gaze",
                 labelId: "Label_Note_Gaze",
                 title: "INFINITE ZOOM",
-                body: "• Semantic Level-of-Detail\n• Adaptive typography scaling",
+                body: "deg Semantic Level-of-Detail\ndeg Adaptive typography scaling",
                 status: "SYNCHRONIZED",
                 basePos: new vec3(0.0, 5.5, -68.5),
                 baseRotY: 0.0
@@ -525,7 +525,7 @@ var WORKSPACES = {
                 id: "StickyNote_Constellation",
                 labelId: "Label_Note_Constellation",
                 title: "GALAXY OVERVIEW",
-                body: "• Macro view of all thoughts\n[x] High-level graph vision",
+                body: "deg Macro view of all thoughts\n[x] High-level graph vision",
                 status: "ANCHORED",
                 basePos: new vec3(15.0, 1.0, -66.5),
                 baseRotY: -14.0 * Math.PI / 180.0
@@ -533,8 +533,8 @@ var WORKSPACES = {
             {
                 id: "StickyNote_AI",
                 labelId: "Label_Note_AI",
-                title: "✦ DEEP SPACE AI",
-                body: "• Deep Concept Traversal\n[ ] Infinite Sub-Universe",
+                title: "? DEEP SPACE AI",
+                body: "deg Deep Concept Traversal\n[ ] Infinite Sub-Universe",
                 status: "SYNTHESIZING",
                 basePos: new vec3(-2.0, -8.5, -67.5),
                 baseRotY: 0.0,
@@ -666,7 +666,7 @@ DrawingAndSnappingModule.prototype.initStrokePool = function() {
         var seg = global.scene.createSceneObject("Stroke_Segment_" + i);
         var vis = seg.createComponent("Component.RenderMeshVisual");
         if (this.kernel.boxMesh) vis.mesh = this.kernel.boxMesh;
-        if (this.kernel.pbrMaterial) vis.material = this.kernel.pbrMaterial;
+        if (this.kernel.pbrMaterial) { var m = (typeof this.kernel.pbrMaterial.clone === "function") ? this.kernel.pbrMaterial.clone() : this.kernel.pbrMaterial; vis.mainMaterial = m; vis.material = m; }
         seg.getTransform().setWorldScale(new vec3(0.3, 0.3, 0.3));
         this.applyColor(seg, new vec4(0.0, 0.94, 1.0, 0.9));
         seg.enabled = false;
@@ -742,7 +742,7 @@ DrawingAndSnappingModule.prototype.endStroke = function() {
 
     var shape = this.recognizer.recognize(this.currentStrokePoints);
     if (shape) {
-        print("[INFINITY INK] ✦ Snapped Shape Recognized: " + shape.type.toUpperCase());
+        print("[INFINITY INK] ? Snapped Shape Recognized: " + shape.type.toUpperCase());
         var snappedMesh = this.instantiateSnappedShape(shape);
         this.currentStrokePoints = [];
         return { shape: shape, obj: snappedMesh };
@@ -863,7 +863,7 @@ FTUEOnboarding.prototype.finish = function() {
         } catch(e) {}
     }
     this.notify();
-    print("[INFINITY ONBOARDING] ✓ Tutorial completed and persisted.");
+    print("[INFINITY ONBOARDING] ? Tutorial completed and persisted.");
 };
 
 FTUEOnboarding.prototype.reset = function() {
@@ -876,7 +876,7 @@ FTUEOnboarding.prototype.reset = function() {
         } catch(e) {}
     }
     this.notify();
-    print("[INFINITY ONBOARDING] ↺ Tutorial reset for replay.");
+    print("[INFINITY ONBOARDING] ? Tutorial reset for replay.");
 };
 global.FTUEOnboarding = FTUEOnboarding;
 
@@ -903,7 +903,7 @@ function NoteEditorKeyboard(kernelState) {
         ["TAB", "Z", "X", "C", "V", "B", "N", "M", "SPACE", "SAVE"]
     ];
 
-    this.initUI();
+    this.uiInitialized = false;
 }
 
 NoteEditorKeyboard.prototype.initUI = function() {
@@ -911,25 +911,25 @@ NoteEditorKeyboard.prototype.initUI = function() {
     this.easelObj = global.scene.createSceneObject("Editor_Easel_Backplate");
     var visual = this.easelObj.createComponent("Component.RenderMeshVisual");
     if (this.kernel.boxMesh) visual.mesh = this.kernel.boxMesh;
-    if (this.kernel.pbrMaterial) visual.material = this.kernel.pbrMaterial;
+    if (this.kernel.pbrMaterial) { var m = (typeof this.kernel.pbrMaterial.clone === "function") ? this.kernel.pbrMaterial.clone() : this.kernel.pbrMaterial; visual.mainMaterial = m; visual.material = m; }
     this.easelObj.getTransform().setWorldPosition(new vec3(0.0, 6.5, -64.0));
     this.easelObj.getTransform().setWorldScale(new vec3(32.0, 14.0, 0.4));
     this.applyColor(this.easelObj, new vec4(0.04, 0.08, 0.16, 0.95));
 
     this.easelLabel = global.scene.createSceneObject("Editor_Easel_Text");
     var txt = this.easelLabel.createComponent("Component.Text3D");
-    txt.text = "✦ INFINITY NOTE EDITOR\n[SELECT A NOTE TO EDIT]";
+    txt.text = "? INFINITY NOTE EDITOR\n[SELECT A NOTE TO EDIT]";
     txt.size = 4.2;
     if (txt.mainPass && txt.mainPass.baseColor) {
         txt.mainPass.baseColor = new vec4(0.0, 0.94, 1.0, 1.0);
     }
     this.easelLabel.getTransform().setWorldPosition(new vec3(0.0, 6.5, -63.5));
 
-    // 2. Spatial Virtual Keyboard Deck (Z = -58cm, Y = -4.5cm, tilted 22°)
+    // 2. Spatial Virtual Keyboard Deck (Z = -58cm, Y = -4.5cm, tilted 22deg)
     this.keyboardDeck = global.scene.createSceneObject("Editor_Keyboard_Deck");
     var kbVisual = this.keyboardDeck.createComponent("Component.RenderMeshVisual");
     if (this.kernel.boxMesh) kbVisual.mesh = this.kernel.boxMesh;
-    if (this.kernel.pbrMaterial) kbVisual.material = this.kernel.pbrMaterial;
+    if (this.kernel.pbrMaterial) { var m = (typeof this.kernel.pbrMaterial.clone === "function") ? this.kernel.pbrMaterial.clone() : this.kernel.pbrMaterial; kbVisual.mainMaterial = m; kbVisual.material = m; }
     this.keyboardDeck.getTransform().setWorldPosition(new vec3(0.0, -4.5, -58.0));
     this.keyboardDeck.getTransform().setWorldScale(new vec3(36.0, 11.0, 0.4));
     this.keyboardDeck.getTransform().setLocalRotation(quat.fromEulerAngles(22.0 * Math.PI / 180.0, 0, 0));
@@ -948,7 +948,7 @@ NoteEditorKeyboard.prototype.initUI = function() {
             var kObj = global.scene.createSceneObject("Keycap_" + keyChar + "_" + r + "_" + c);
             var kVis = kObj.createComponent("Component.RenderMeshVisual");
             if (this.kernel.boxMesh) kVis.mesh = this.kernel.boxMesh;
-            if (this.kernel.pbrMaterial) kVis.material = this.kernel.pbrMaterial;
+            if (this.kernel.pbrMaterial) { var m = (typeof this.kernel.pbrMaterial.clone === "function") ? this.kernel.pbrMaterial.clone() : this.kernel.pbrMaterial; kVis.mainMaterial = m; kVis.material = m; }
 
             var kx = startX + c * stepX;
             var ky = startY + r * stepY;
@@ -1006,6 +1006,10 @@ NoteEditorKeyboard.prototype.setVisible = function(vis) {
 
 NoteEditorKeyboard.prototype.openEditor = function(note) {
     if (!note || !note.cfg) return;
+    if (!this.uiInitialized) {
+        this.initUI();
+        this.uiInitialized = true;
+    }
     this.targetNote = note;
     this.editTitle = note.cfg.title || "UNTITLED";
     this.editBody = note.cfg.body || "";
@@ -1030,11 +1034,11 @@ NoteEditorKeyboard.prototype.updateDisplay = function() {
     var fieldIndicator = isTitle ? ">>> [EDITING TITLE] <<<" : ">>> [EDITING BODY] <<<";
     var bodyLines = this.editBody.split("\n").slice(0, 3).join("\n");
 
-    var displayStr = "✦ INFINITY // SPATIAL NOTE EDITOR\n" +
+    var displayStr = "? INFINITY // SPATIAL NOTE EDITOR\n" +
                      fieldIndicator + "  (Tap TAB to switch)\n" +
                      "----------------------------------------\n" +
-                     "TITLE: " + this.editTitle + (isTitle ? " ▌" : "") + "\n" +
-                     "BODY:\n" + bodyLines + (!isTitle ? " ▌" : "") + "\n" +
+                     "TITLE: " + this.editTitle + (isTitle ? " deg" : "") + "\n" +
+                     "BODY:\n" + bodyLines + (!isTitle ? " deg" : "") + "\n" +
                      "----------------------------------------\n" +
                      "[ TAB: Switch Field | BKSP: Delete | SAVE: Commit ]";
     txt.text = displayStr;
@@ -1091,7 +1095,7 @@ NoteEditorKeyboard.prototype.saveChanges = function() {
         }
     }
 
-    print("[INFINITY EDITOR] ✓ Changes saved to note: " + this.editTitle);
+    print("[INFINITY EDITOR] ? Changes saved to note: " + this.editTitle);
     this.closeEditor();
 
     if (this.kernel.saveWorkspaceState && this.kernel.state && this.kernel.state.focusedWorkspace) {
@@ -1148,7 +1152,7 @@ LiveAIAssistantModule.prototype.synthesizeSpatialExpansion = function(selectedNo
 
     if (this.kernel.state.voiceHudLabel) {
         var hTxt = this.kernel.state.voiceHudLabel.getComponent("Component.Text3D");
-        if (hTxt) hTxt.text = "[ ✦ AI SYNTHESIZING NEURAL VECTORS... ]";
+        if (hTxt) hTxt.text = "[ ? AI SYNTHESIZING NEURAL VECTORS... ]";
     }
 
     var expansion = this.generateContextualExpansion(currentTitle, currentBody, workspaceKey);
@@ -1156,14 +1160,14 @@ LiveAIAssistantModule.prototype.synthesizeSpatialExpansion = function(selectedNo
     var resultPayload = {
         success: true,
         source: "ON_DEVICE_CURRICULUM_SYNTHESIZER",
-        title: "✦ SYNTHESIS: " + currentTitle.toUpperCase().replace(/[^A-Z0-9 ]/g, "").trim().substring(0, 18),
-        body: "• " + expansion.text + "\n• " + expansion.link + "\n[x] Vector Linked",
+        title: "? SYNTHESIS: " + currentTitle.toUpperCase().replace(/[^A-Z0-9 ]/g, "").trim().substring(0, 18),
+        body: "deg " + expansion.text + "\ndeg " + expansion.link + "\n[x] Vector Linked",
         status: "SYNCHRONIZED",
         confidence: 0.94
     };
 
     this.isLoading = false;
-    print("[INFINITY AI] ✓ Contextual Edge Synthesis complete: " + resultPayload.title);
+    print("[INFINITY AI] ? Contextual Edge Synthesis complete: " + resultPayload.title);
 
     if (typeof callback === "function") {
         callback(resultPayload);
@@ -1186,7 +1190,7 @@ LiveAIAssistantModule.prototype.generateContextualExpansion = function(title, bo
             };
         } else {
             return {
-                text: "Attention Flow Graph: Dynamically weights visual hierarchy across 15° cylindrical arc.",
+                text: "Attention Flow Graph: Dynamically weights visual hierarchy across 15deg cylindrical arc.",
                 link: "Concentric optical focus plane locked at Z=-68cm."
             };
         }
@@ -1222,9 +1226,9 @@ LiveAIAssistantModule.prototype.summarizeKnowledgeGraph = function(workspaceKey,
             concepts.push(currentNotes[i].cfg.title.replace(/^[0-9.]+\s*/, ""));
         }
     }
-    var conceptsStr = concepts.slice(0, 3).join(" ↔ ");
-    var synthTitle = "✦ GRAPH SYNTHESIS";
-    var synthBody = "• Cross-Concept: " + conceptsStr + "\n• Coherent quantum cognitive model linked\n[x] Knowledge Graph Synthesized";
+    var conceptsStr = concepts.slice(0, 3).join(" ? ");
+    var synthTitle = "? GRAPH SYNTHESIS";
+    var synthBody = "deg Cross-Concept: " + conceptsStr + "\ndeg Coherent quantum cognitive model linked\n[x] Knowledge Graph Synthesized";
 
     var synthNode = {
         id: "StickyNote_Synthesis_" + Math.floor(state.time || 1),
@@ -1263,12 +1267,12 @@ LiveAIAssistantModule.prototype.summarizeKnowledgeGraph = function(workspaceKey,
     triggerAudioRipple(synthNode.basePos);
 
     if (state.voiceHud && state.voiceHudLabel) {
-        setTextContent(state.voiceHudLabel, "[ ✦ KNOWLEDGE GRAPH SYNTHESIZED // 4 NODES ]", 4.2);
+        setTextContent(state.voiceHudLabel, "[ ? KNOWLEDGE GRAPH SYNTHESIZED // 4 NODES ]", 4.2);
         applyMaterialStyle(state.voiceHud, null, new vec4(1.0, 0.75, 0.08, 0.95));
         state.voiceHudTimer = 3.5;
     }
 
-    print("[INFINITY AI] ✓ Knowledge Graph Synthesized: " + synthTitle);
+    print("[INFINITY AI] ? Knowledge Graph Synthesized: " + synthTitle);
     if (typeof callback === "function") callback(noteEntry);
     return noteEntry;
 };
@@ -1286,13 +1290,13 @@ SessionDocumentExporter.exportSessionDocument = function(sessionData) {
     var shapes = sessionData.shapes || [];
     var timestamp = new Date().toISOString();
 
-    var md = "# 🌌 INFINITY // Spatial Thinking Session Report\n\n";
+    var md = "# ?? INFINITY // Spatial Thinking Session Report\n\n";
     md += "* **Generated:** `" + timestamp + "`\n";
     md += "* **Active Workspace:** **" + wsName.toUpperCase() + "**\n";
     md += "* **Target Hardware:** Snap Spectacles (6DoF Optical AR)\n";
     md += "* **Interaction Engine:** Spectacles Interaction Kit (SIK) + Infinity OS Kernel\n\n";
     md += "---\n\n";
-    md += "## 📋 Spatial Thought Objects & Cognitive Notes\n\n";
+    md += "## ?? Spatial Thought Objects & Cognitive Notes\n\n";
 
     if (notes.length === 0) {
         md += "*No active notes in this workspace.*\n\n";
@@ -1315,7 +1319,7 @@ SessionDocumentExporter.exportSessionDocument = function(sessionData) {
     }
 
     md += "---\n\n";
-    md += "## 🎨 Snapped Geometric Shapes & Drawings\n\n";
+    md += "## ?? Snapped Geometric Shapes & Drawings\n\n";
     if (shapes.length === 0) {
         md += "*No geometric shapes drawn in this session.*\n\n";
     } else {
@@ -1363,8 +1367,8 @@ DesktopCompanionSyncModule.prototype.injectDesktopSnippet = function(title, cont
 
     if (this.kernel.state.notes && this.kernel.state.notes.length > 0) {
         var note = this.kernel.state.notes[0];
-        note.cfg.title = "⚡ " + noteTitle;
-        note.cfg.body = "• " + noteBody + "\n[x] Synced from Companion";
+        note.cfg.title = "? " + noteTitle;
+        note.cfg.body = "deg " + noteBody + "\n[x] Synced from Companion";
         note.status = "SYNCHRONIZED";
 
         if (note.labelObj) {
@@ -1377,7 +1381,7 @@ DesktopCompanionSyncModule.prototype.injectDesktopSnippet = function(title, cont
 
     if (this.kernel.state.voiceHud && this.kernel.state.voiceHudLabel) {
         var hTxt = this.kernel.state.voiceHudLabel.getComponent("Component.Text3D");
-        if (hTxt) hTxt.text = "[ ⚡ SNIPPET INJECTED TO AR ]";
+        if (hTxt) hTxt.text = "[ ? SNIPPET INJECTED TO AR ]";
         this.kernel.state.voiceHudTimer = 3.0;
     }
 
@@ -1396,7 +1400,7 @@ function SurfaceTrackingManager(kernelState) {
     this.kernel = kernelState;
     this.worldQuery = null;
     this.calibratedHeight = -18.0; // cm relative to camera
-    this.surfaceTiltDeg = 35.0;     // Ergonomic 35° recline toward user (from QWERTY)
+    this.surfaceTiltDeg = 35.0;     // Ergonomic 35deg recline toward user (from QWERTY)
     this.surfaceLiftCm = 1.2;       // +1.2cm clearance so fingers poke hologram before wood table
     this.surfaceSnapping = true;
     this.initWorldQuery();
@@ -1415,7 +1419,7 @@ SurfaceTrackingManager.prototype.initWorldQuery = function() {
         self.calibratedHeight = surfaceY;
         self.updateSurfacePositions();
         if (self.kernel.state.voiceHud && self.kernel.state.voiceHudLabel) {
-            setTextContent(self.kernel.state.voiceHudLabel, "[ ◉ PHYSICAL DESK LOCKED: " + surfaceY.toFixed(1) + " CM ]", 4.2);
+            setTextContent(self.kernel.state.voiceHudLabel, "[ ? PHYSICAL DESK LOCKED: " + surfaceY.toFixed(1) + " CM ]", 4.2);
             applyMaterialStyle(self.kernel.state.voiceHud, null, new vec4(0.0, 0.85, 0.5, 0.95));
             self.kernel.state.voiceHudTimer = 3.0;
         }
@@ -1428,7 +1432,7 @@ SurfaceTrackingManager.prototype.adjustDeskElevation = function(deltaY) {
     this.calibratedHeight = Math.max(-45.0, Math.min(-5.0, this.calibratedHeight));
     this.updateSurfacePositions();
     if (this.kernel.state.voiceHud && this.kernel.state.voiceHudLabel) {
-        setTextContent(this.kernel.state.voiceHudLabel, "[ ◉ DESK CALIBRATED: " + this.calibratedHeight.toFixed(1) + " CM ]", 4.2);
+        setTextContent(this.kernel.state.voiceHudLabel, "[ ? DESK CALIBRATED: " + this.calibratedHeight.toFixed(1) + " CM ]", 4.2);
         this.kernel.state.voiceHudTimer = 2.5;
     }
     print("[INFINITY SURFACE] Calibrated Desk Elevation: " + this.calibratedHeight.toFixed(1) + " cm");
@@ -1510,7 +1514,7 @@ SurfaceTrackingManager.prototype.snapToPhysicalSurface = function(ray) {
     this.calibratedHeight = -18.0;
     this.updateSurfacePositions();
     if (this.kernel.state.voiceHud && this.kernel.state.voiceHudLabel) {
-        setTextContent(this.kernel.state.voiceHudLabel, "[ ◉ DESK DEFAULT: -18.0 CM GROUNDED ]", 4.2);
+        setTextContent(this.kernel.state.voiceHudLabel, "[ ? DESK DEFAULT: -18.0 CM GROUNDED ]", 4.2);
         this.kernel.state.voiceHudTimer = 2.5;
     }
     return false;
@@ -1568,7 +1572,9 @@ var state = {
     aiCore: null,
     lastTappedNote: null,
     lastNoteTapTime: 0.0,
-    lastAppliedOpacity: -1.0
+    lastAppliedOpacity: -1.0,
+    workspacePill: null,
+    workspacePillLabel: null
 };
 
 // Touch / Tap Discrimination State (Enhanced with Obsidiar Kinematics)
@@ -1582,7 +1588,7 @@ var touchState = {
     startPos: new vec2(0, 0),
     startTime: 0,
     hasMoved: false,
-    dragThreshold: 0.02, // 2% screen distance threshold
+    dragThreshold: 0.035, // 3.5% screen distance threshold
     tapMaxSec: TAP_MAX_SEC,
     dragThresholdCm: DRAG_THRESHOLD_CM,
     lastDragEndTime: 0,
@@ -1654,7 +1660,12 @@ function getOrCreateObject(name, meshAsset, matAsset) {
         if (meshAsset || matAsset) {
             var visual = obj.createComponent("Component.RenderMeshVisual");
             if (meshAsset) visual.mesh = meshAsset;
-            if (matAsset) visual.material = matAsset;
+            if (matAsset) {
+                var instMat = (typeof matAsset.clone === "function") ? matAsset.clone() : matAsset;
+                visual.mainMaterial = instMat;
+                visual.material = instMat;
+            }
+        if (state.camera) { try { obj.layer = state.camera.getSceneObject().layer; } catch(e) {} }
         }
         print("[INFINITY BOOT] Procedurally instantiated: " + name);
     }
@@ -1666,6 +1677,8 @@ function getOrCreateText3D(name, defaultText, size, color, renderOrder, disableD
     if (!obj) {
         obj = global.scene.createSceneObject(name);
         var txt = obj.createComponent("Component.Text3D");
+        if (script.textMaterial && script.textMaterial.mainPass) { try { txt.mainMaterial = script.textMaterial; } catch(e) {} }
+        if (state.camera) { try { obj.layer = state.camera.getSceneObject().layer; } catch(e) {} }
         txt.text = defaultText || "";
         if (size) txt.size = size;
         if (renderOrder !== undefined && typeof txt.setRenderOrder === "function") {
@@ -1675,8 +1688,11 @@ function getOrCreateText3D(name, defaultText, size, color, renderOrder, disableD
             if (typeof txt.depthTest === "boolean") txt.depthTest = false;
             if (txt.mainPass) txt.mainPass.depthTest = false;
         }
-        if (color && txt.mainPass && txt.mainPass.baseColor) {
-            txt.mainPass.baseColor = color;
+        if (color) {
+            try {
+                if (txt.textFill) txt.textFill.color = color;
+                if (txt.mainPass && txt.mainPass.baseColor) txt.mainPass.baseColor = color;
+            } catch(e) {}
         }
         print("[INFINITY BOOT] Procedurally instantiated Text3D: " + name);
     }
@@ -1801,10 +1817,10 @@ script.createEvent('OnStartEvent').bind(function() {
             state.internetAvailable = args.isInternetAvailable;
             if (state.voiceHud && state.voiceHudLabel) {
                 if (args.isInternetAvailable) {
-                    setTextContent(state.voiceHudLabel, "[ ✦ INFINITY // RECONNECTED • ✦ AI READY ]", 4.0);
+                    setTextContent(state.voiceHudLabel, "[ ? INFINITY // RECONNECTED deg ? AI READY ]", 4.0);
                     applyMaterialStyle(state.voiceHud, null, new vec4(0.0, 0.85, 0.45, 0.95));
                 } else {
-                    setTextContent(state.voiceHudLabel, "[ ⚠️ INFINITY // OFFLINE - LOCAL MODE ACTIVE ]", 4.0);
+                    setTextContent(state.voiceHudLabel, "[ ?? INFINITY // OFFLINE - LOCAL MODE ACTIVE ]", 4.0);
                     applyMaterialStyle(state.voiceHud, null, new vec4(0.95, 0.25, 0.15, 0.95));
                 }
                 state.voiceHudTimer = 3.5;
@@ -1853,10 +1869,10 @@ script.createEvent('OnStartEvent').bind(function() {
 
     // 2b. Table Height Calibration & Feature Controls (Physical Grounding HUD)
     var deskButtons = [
-        { id: "Button_Desk_Up", label: "[ ▲ +5cm ]", x: -16.0, color: new vec4(0.0, 0.94, 1.0, 0.92) },
-        { id: "Button_Desk_Down", label: "[ ▼ -5cm ]", x: -5.0, color: new vec4(0.0, 0.94, 1.0, 0.92) },
-        { id: "Button_Desk_Snap", label: "[ ◉ SNAP ]", x: 6.0, color: new vec4(0.0, 1.0, 0.66, 0.95) },
-        { id: "Button_Voice_Note", label: "[ 🎙️ DICTATE ]", x: 18.0, color: new vec4(1.0, 0.75, 0.08, 0.95) }
+        { id: "Button_Desk_Up", label: "[ ? +5cm ]", x: -16.0, color: new vec4(0.0, 0.94, 1.0, 0.92) },
+        { id: "Button_Desk_Down", label: "[ ? -5cm ]", x: -5.0, color: new vec4(0.0, 0.94, 1.0, 0.92) },
+        { id: "Button_Desk_Snap", label: "[ ? SNAP ]", x: 6.0, color: new vec4(0.0, 1.0, 0.66, 0.95) },
+        { id: "Button_Voice_Note", label: "[ ??? DICTATE ]", x: 18.0, color: new vec4(1.0, 0.75, 0.08, 0.95) }
     ];
     state.calibrationButtons = [];
     for (var bi = 0; bi < deskButtons.length; bi++) {
@@ -1888,7 +1904,7 @@ script.createEvent('OnStartEvent').bind(function() {
     sumBtn.getTransform().setWorldScale(new vec3(16.0, 2.4, 0.4));
     applyMaterialStyle(sumBtn, null, new vec4(0.08, 0.14, 0.24, 0.94));
 
-    var sumLbl = getOrCreateText3D("Label_Button_Summarize_Graph", "[ ✦ SUMMARIZE GRAPH ]", 3.6, new vec4(1.0, 0.85, 0.20, 1.0));
+    var sumLbl = getOrCreateText3D("Label_Button_Summarize_Graph", "[ ? SUMMARIZE GRAPH ]", 3.6, new vec4(1.0, 0.85, 0.20, 1.0));
     sumLbl.getTransform().setWorldPosition(new vec3(0.0, -12.5, -67.1));
     state.summarizeButton = { obj: sumBtn, labelObj: sumLbl };
 
@@ -1926,17 +1942,28 @@ script.createEvent('OnStartEvent').bind(function() {
     state.voiceHud.getTransform().setWorldScale(new vec3(26.0, 3.2, 0.5));
     applyMaterialStyle(state.voiceHud, null, new vec4(0.04, 0.08, 0.18, 0.90));
 
-    state.voiceHudLabel = getOrCreateText3D("Label_Voice_HUD", "[ ✦ INFINITY // SPATIAL STUDY COPILOT ]", 4.2, new vec4(0.0, 0.94, 1.0, 1.0));
+    state.voiceHudLabel = getOrCreateText3D("Label_Voice_HUD", "[ ? INFINITY // SPATIAL STUDY COPILOT ]", 4.2, new vec4(0.0, 0.94, 1.0, 1.0));
     state.voiceHudLabel.getTransform().setWorldPosition(new vec3(0.0, 11.2, -68.3));
 
     // 6. Whiteboard Headers & Subtitles
-    state.headerLabel = getOrCreateText3D("Label_Whiteboard_Header", "INFINITY // THINK WORKSPACE", 11.0, new vec4(0.0, 0.94, 1.0, 1.0));
+    state.headerLabel = getOrCreateText3D("Label_Whiteboard_Header", "INFINITY // QUANTUM STUDY LAB", 11.0, new vec4(0.0, 0.94, 1.0, 1.0));
     state.headerLabel.getTransform().setWorldPosition(new vec3(0, 7.5, -70));
 
-    state.subLabel = getOrCreateText3D("Label_Whiteboard_Sub", "PINCH PLANET TO SWITCH • DRAG NOTES • ✦ PINCH AI TO EXPAND", 5.0, new vec4(1.0, 1.0, 1.0, 0.95));
+    state.subLabel = getOrCreateText3D("Label_Whiteboard_Sub", "TAP NOTE TO CYCLE STATUS • TAP [ ✎ ] TO EDIT • LOOK AWAY TO DIM", 4.6, new vec4(1.0, 1.0, 1.0, 0.95));
     state.subLabel.getTransform().setWorldPosition(new vec3(0, 4.8, -70));
 
-    // 7. Initialize 4 Spatial Sticky Notes with 15° Cylindrical Curved Ergonomics
+    // 6b. Workspace Status & Quick-Switcher Pill (Decluttered Header HUD)
+    var pillObj = getOrCreateObject("Workspace_Selector_Pill", script.boxMesh, script.pbrMaterial);
+    pillObj.getTransform().setWorldPosition(new vec3(20.0, 7.5, -69.5));
+    pillObj.getTransform().setWorldScale(new vec3(12.0, 2.6, 0.4));
+    applyMaterialStyle(pillObj, null, new vec4(0.06, 0.12, 0.22, 0.94), RENDER_ORDER_CARD);
+
+    var pillLbl = getOrCreateText3D("Label_Workspace_Selector", "[ THINK ▾ ]", 3.4, WORKSPACES["Think"].color, RENDER_ORDER_TEXT, true);
+    pillLbl.getTransform().setWorldPosition(new vec3(20.0, 7.5, -68.8));
+    state.workspacePill = pillObj;
+    state.workspacePillLabel = pillLbl;
+
+    // 7. Initialize 4 Spatial Sticky Notes with 15deg Cylindrical Curved Ergonomics
     var ws = WORKSPACES[state.focusedWorkspace];
     for (var k = 0; k < ws.notes.length; k++) {
         var nCfg = ws.notes[k];
@@ -1953,11 +1980,21 @@ script.createEvent('OnStartEvent').bind(function() {
         var initRotX = nCfg.baseRotX || 0.0;
         nObj.getTransform().setLocalRotation(quat.fromEulerAngles(initRotX, initRotY, 0.0));
 
-        var noteTex = script[GALAXY_PLANET_CONFIGS["Planet_" + state.focusedWorkspace].texProp];
-        applyMaterialStyle(nObj, noteTex, new vec4(0.08, 0.12, 0.22, 0.94), RENDER_ORDER_CARD, true);
+        applyMaterialStyle(nObj, null, new vec4(0.08, 0.16, 0.28, 0.98), RENDER_ORDER_CARD, true);
 
-        lblObj.getTransform().setWorldPosition(new vec3(nCfg.basePos.x, nCfg.basePos.y, nCfg.basePos.z + 0.8));
+        lblObj.getTransform().setWorldPosition(new vec3(nCfg.basePos.x, nCfg.basePos.y, nCfg.basePos.z + 0.75));
         lblObj.getTransform().setLocalRotation(quat.fromEulerAngles(initRotX, initRotY, 0.0));
+
+        // Action Pill: [ ✎ ] Edit Button directly on top-right of card
+        var editBtn = getOrCreateObject("Button_Edit_" + k, script.boxMesh, script.pbrMaterial);
+        editBtn.getTransform().setWorldScale(new vec3(2.6, 1.4, 0.25));
+        editBtn.getTransform().setWorldPosition(new vec3(nCfg.basePos.x + 4.8, nCfg.basePos.y + 2.8, nCfg.basePos.z + 0.5));
+        editBtn.getTransform().setLocalRotation(quat.fromEulerAngles(initRotX, initRotY, 0.0));
+        applyMaterialStyle(editBtn, null, new vec4(0.0, 0.85, 1.0, 0.90), RENDER_ORDER_CARD);
+
+        var editLbl = getOrCreateText3D("Label_Edit_" + k, "[ ✎ ]", 2.2, new vec4(1.0, 1.0, 1.0, 1.0), RENDER_ORDER_TEXT, true);
+        editLbl.getTransform().setWorldPosition(new vec3(nCfg.basePos.x + 4.8, nCfg.basePos.y + 2.8, nCfg.basePos.z + 0.75));
+        editLbl.getTransform().setLocalRotation(quat.fromEulerAngles(initRotX, initRotY, 0.0));
 
         // Contact shadow grounding plane beneath note (Waveguide physical anchoring)
         var shadowObj = getOrCreateObject("Contact_Shadow_" + k, script.boxMesh, script.pbrMaterial);
@@ -1969,6 +2006,8 @@ script.createEvent('OnStartEvent').bind(function() {
         state.notes.push({
             obj: nObj,
             labelObj: lblObj,
+            editBtn: editBtn,
+            editLabel: editLbl,
             id: nCfg.id,
             cfg: nCfg,
             status: nCfg.status,
@@ -2014,32 +2053,32 @@ script.createEvent('OnStartEvent').bind(function() {
         // Subsystem 0: Surface Tracking & Physical Snapping Manager
     if (global.SurfaceTrackingManager) {
         state.surfaceManager = new global.SurfaceTrackingManager(kernelInterface);
-        print("[INFINITY] ✓ Surface Tracking & Table Snapping Engine initialized.");
+        print("[INFINITY] ? Surface Tracking & Table Snapping Engine initialized.");
     }
 
     // Subsystem 1: FTUE Onboarding
     if (global.FTUEOnboarding) {
         state.ftueOnboarding = new global.FTUEOnboarding("INFINITY_FTUE_V3");
         initFTUEBillboard();
-        print("[INFINITY OS] ✓ FTUE 3-Step Spatial Onboarding Engine initialized.");
+        print("[INFINITY OS] ? FTUE 3-Step Spatial Onboarding Engine initialized.");
     }
 
     // Subsystem 2: 3D Note Editor & Virtual Keyboard Deck
     if (global.NoteEditorKeyboard) {
         state.noteEditor = new global.NoteEditorKeyboard(kernelInterface);
-        print("[INFINITY OS] ✓ 3D Note Editor & Spatial Keyboard Deck initialized.");
+        print("[INFINITY OS] ? 3D Note Editor & Spatial Keyboard Deck initialized.");
     }
 
     // Subsystem 3: 3D Polyline Inking & Shape Snapper
     if (global.DrawingAndSnappingModule) {
         state.shapeModule = new global.DrawingAndSnappingModule(kernelInterface);
-        print("[INFINITY OS] ✓ 3D Inking & Shape Recognizer initialized.");
+        print("[INFINITY OS] ? 3D Inking & Shape Recognizer initialized.");
     }
 
     // Subsystem 4: Live Contextual AI Assistant Bridge
     if (global.LiveAIAssistantModule) {
         state.aiModule = new global.LiveAIAssistantModule(kernelInterface);
-        print("[INFINITY OS] ✓ Live Contextual AI Assistant Bridge initialized.");
+        print("[INFINITY OS] ? Live Contextual AI Assistant Bridge initialized.");
     }
 
     // Subsystem 5: Desktop Companion Sync Bridge
@@ -2048,7 +2087,7 @@ script.createEvent('OnStartEvent').bind(function() {
         global.infinityInjectDesktopSnippet = function(title, content, category) {
             return state.desktopSync.injectDesktopSnippet(title, content, category);
         };
-        print("[INFINITY OS] ✓ Desktop Companion Sync Bridge initialized.");
+        print("[INFINITY OS] ? Desktop Companion Sync Bridge initialized.");
     }
 
     // 11. Boot into Think Workspace with Desk Anchoring
@@ -2072,7 +2111,7 @@ function initFTUEBillboard() {
     var stepData = state.ftueOnboarding.getCurrentStepData();
     var billboardText = stepData ? 
         ("[ " + stepData.tag + " ]\n" + stepData.prompt) : 
-        "✦ WELCOME TO INFINITY SPATIAL COMPUTER";
+        "? WELCOME TO INFINITY SPATIAL COMPUTER";
 
     state.ftueText = getOrCreateText3D("Label_FTUE_Tutorial", billboardText, 4.2, new vec4(1.0, 0.75, 0.08, 1.0));
     state.ftueText.getTransform().setWorldPosition(new vec3(0.0, 14.8, -65.3));
@@ -2104,7 +2143,7 @@ function enterFocusMode(workspaceKey) {
     state.focusedWorkspace = workspaceKey;
     var ws = WORKSPACES[workspaceKey];
 
-    print("[INFINITY OS] ✦ Cosmic Jump to Workspace: " + ws.title);
+    print("[INFINITY OS] ? Cosmic Jump to Workspace: " + ws.title);
 
     if (state.headerLabel) {
         setTextContent(state.headerLabel, ws.title);
@@ -2148,14 +2187,30 @@ function enterFocusMode(workspaceKey) {
         var oldNote = state.notes[cn];
         if (oldNote && oldNote.obj) oldNote.obj.destroy();
         if (oldNote && oldNote.labelObj) oldNote.labelObj.destroy();
+        if (oldNote && oldNote.editBtn) oldNote.editBtn.destroy();
+        if (oldNote && oldNote.editLabel) oldNote.editLabel.destroy();
+        if (oldNote && oldNote.deleteBtn) oldNote.deleteBtn.destroy();
+        if (oldNote && oldNote.deleteLabel) oldNote.deleteLabel.destroy();
         state.notes.splice(cn, 1);
+    }
+
+    // Update compact workspace selector pill
+    if (state.workspacePill && state.workspacePillLabel) {
+        setTextContent(state.workspacePillLabel, "[ " + workspaceKey.toUpperCase() + " ▾ ]", 3.4);
+        var pTxt = getText3D(state.workspacePillLabel);
+        if (pTxt && pTxt.mainPass && pTxt.mainPass.baseColor) {
+            pTxt.mainPass.baseColor = ws.color;
+        }
     }
 
     for (var k in state.planets) {
         var p = state.planets[k];
-        // In deep study focus mode, completely recede / hide celestial dock to eliminate 46° FOV cockpit clutter
+        // In deep study focus mode, completely hide celestial dock to eliminate 46deg FOV cockpit clutter
         p.targetScale = new vec3(0.01, 0.01, 0.01);
         p.targetPos = new vec3(p.config.basePos.x, p.config.basePos.y + 35.0, p.config.basePos.z - 50.0);
+        if (p.obj) {
+            p.obj.enabled = false;
+        }
         if (state.labels[k]) {
             state.labels[k].enabled = false;
         }
@@ -2184,10 +2239,13 @@ function returnToGalaxy() {
     print("[INFINITY OS] Returning to Galaxy Overview...");
 
     if (state.headerLabel) setTextContent(state.headerLabel, "INFINITY // COSMIC SPATIAL UNIVERSE");
-    if (state.subLabel) setTextContent(state.subLabel, "PINCH ANY PLANET TO ENTER WORKSPACE • ✦ AI ACTIVE");
+    if (state.subLabel) setTextContent(state.subLabel, "PINCH ANY PLANET TO ENTER WORKSPACE deg ? AI ACTIVE");
 
     for (var k in state.planets) {
         var p = state.planets[k];
+        if (p.obj) {
+            p.obj.enabled = true;
+        }
         p.targetPos = p.config.basePos;
         p.targetScale = p.config.baseScale;
         if (state.labels[k]) {
@@ -2423,9 +2481,18 @@ script.createEvent('UpdateEvent').bind(function() {
         state.surfaceManager.updateContactShadows();
     }
 
-    // 4. Animate Celestial Planets
+    // 4. Animate Celestial Planets (Only when in Galaxy Overview)
+    var isGalaxy = (state.mode === "GALAXY");
     for (var key in state.planets) {
         var p = state.planets[key];
+        if (p.obj && p.obj.enabled !== isGalaxy) {
+            p.obj.enabled = isGalaxy;
+        }
+        if (state.labels[key] && state.labels[key].enabled !== isGalaxy) {
+            state.labels[key].enabled = isGalaxy;
+        }
+        if (!isGalaxy) continue;
+
         var trans = p.obj.getTransform();
 
         var floatY = Math.sin(state.time * 1.6 + p.orbitOffset) * 0.65;
@@ -2473,7 +2540,7 @@ script.createEvent('UpdateEvent').bind(function() {
         state.subLabel.getTransform().setWorldPosition(vec3.lerp(sPos, new vec3(0, wbTargetY + 9.8, wbTargetZ + 2.0), dt * 5.0));
     }
 
-    // 6. Animate Sticky Notes with 15° Cylindrical Curvature & Hover Scaling
+    // 6. Animate Sticky Notes with 15deg Cylindrical Curvature & Hover Scaling
     for (var i = 0; i < state.notes.length; i++) {
         var n = state.notes[i];
         var isHover = (i === hoveredIndex) && (state.draggedNote !== n);
@@ -2494,7 +2561,19 @@ script.createEvent('UpdateEvent').bind(function() {
         }
 
         if (n.labelObj) {
-            n.labelObj.getTransform().setWorldPosition(new vec3(n.curPos.x, n.curPos.y, n.curPos.z + 0.8));
+            n.labelObj.getTransform().setWorldPosition(new vec3(n.curPos.x, n.curPos.y, n.curPos.z + 0.75));
+        }
+        if (n.editBtn) {
+            n.editBtn.getTransform().setWorldPosition(new vec3(n.curPos.x + 4.8, n.curPos.y + 2.8, n.curPos.z + 0.5));
+        }
+        if (n.editLabel) {
+            n.editLabel.getTransform().setWorldPosition(new vec3(n.curPos.x + 4.8, n.curPos.y + 2.8, n.curPos.z + 0.75));
+        }
+        if (n.deleteBtn) {
+            n.deleteBtn.getTransform().setWorldPosition(new vec3(n.curPos.x - 4.8, n.curPos.y + 2.8, n.curPos.z + 0.5));
+        }
+        if (n.deleteLabel) {
+            n.deleteLabel.getTransform().setWorldPosition(new vec3(n.curPos.x - 4.8, n.curPos.y + 2.8, n.curPos.z + 0.75));
         }
     }
 
@@ -2544,7 +2623,7 @@ function triggerAIAssistant() {
     if (state.aiModule) {
         var selectedNode = (state.notes.length >= 4) ? state.notes[3] : state.notes[0];
         state.aiModule.synthesizeSpatialExpansion(selectedNode, wsKey, function(result) {
-            print("[INFINITY OS] ✦ Live AI Module Returned: " + result.title);
+            print("[INFINITY OS] ? Live AI Module Returned: " + result.title);
             if (state.subLabel) {
                 setTextContent(state.subLabel, result.title + " // " + result.body.split("\n")[0]);
             }
@@ -2563,9 +2642,9 @@ function triggerAIAssistant() {
         });
     } else {
         var expansion = ws.aiExpansions[state.aiIndex % ws.aiExpansions.length];
-        print("[INFINITY OS] ✦ AI Assistant Activated: " + expansion);
+        print("[INFINITY OS] ? AI Assistant Activated: " + expansion);
         if (state.subLabel) {
-            setTextContent(state.subLabel, "✦ AI SYNTHESIS: " + expansion);
+            setTextContent(state.subLabel, "? AI SYNTHESIS: " + expansion);
         }
         if (state.notes.length >= 4) {
             var aiNoteLegacy = state.notes[3];
@@ -2573,7 +2652,7 @@ function triggerAIAssistant() {
             aiNoteLegacy.status = "SYNCHRONIZED";
             if (aiNoteLegacy.labelObj) {
                 var stLegacy = SPATIAL_STATES["SYNCHRONIZED"];
-                var updatedTextLegacy = "✦ AI SYNTHESIS #" + state.aiIndex + "\n• " + expansion + "\n[ " + stLegacy.label + " ]";
+                var updatedTextLegacy = "? AI SYNTHESIS #" + state.aiIndex + "\ndeg " + expansion + "\n[ " + stLegacy.label + " ]";
                 setTextContent(aiNoteLegacy.labelObj, updatedTextLegacy, 4.4);
             }
         }
@@ -2601,10 +2680,10 @@ global.infinityVoiceInterimUpdate = function(streamText) {
 function handleVoiceCommand(cmd) {
     if (!cmd) return;
     var c = cmd.toLowerCase().trim();
-    print("[INFINITY OS] 🎙️ Processing Voice Command: '" + c + "'");
+    print("[INFINITY OS] ??? Processing Voice Command: '" + c + "'");
 
     if (state.voiceHud && state.voiceHudLabel) {
-        setTextContent(state.voiceHudLabel, "[ 🎙️ VOICE: \"" + c.toUpperCase() + "\" ➔ EXECUTING ]", 4.4);
+        setTextContent(state.voiceHudLabel, "[ ??? VOICE: \"" + c.toUpperCase() + "\" ? EXECUTING ]", 4.4);
         applyMaterialStyle(state.voiceHud, null, new vec4(1.0, 0.75, 0.08, 0.95));
         state.voiceHudTimer = 2.8;
     }
@@ -2615,7 +2694,7 @@ function handleVoiceCommand(cmd) {
         if (typeof global.wristCompanionDock === "function") {
             global.wristCompanionDock();
             if (state.voiceHud && state.voiceHudLabel) {
-                setTextContent(state.voiceHudLabel, "[ ✦ AI ASSISTANT DOCKED TO WRIST ]", 4.0);
+                setTextContent(state.voiceHudLabel, "[ ? AI ASSISTANT DOCKED TO WRIST ]", 4.0);
                 state.voiceHudTimer = 2.0;
             }
         }
@@ -2623,7 +2702,7 @@ function handleVoiceCommand(cmd) {
         if (typeof global.wristCompanionUndock === "function") {
             global.wristCompanionUndock(new vec3(-2.0, -8.5, -67.5));
             if (state.voiceHud && state.voiceHudLabel) {
-                setTextContent(state.voiceHudLabel, "[ ✦ AI ASSISTANT UNDOCKED TO STUDY DESK ]", 4.0);
+                setTextContent(state.voiceHudLabel, "[ ? AI ASSISTANT UNDOCKED TO STUDY DESK ]", 4.0);
                 state.voiceHudTimer = 2.0;
             }
         }
@@ -2649,7 +2728,7 @@ function handleVoiceCommand(cmd) {
         if (typeof global.infinityFocusNext === "function") {
             global.infinityFocusNext();
             if (state.voiceHud && state.voiceHudLabel) {
-                setTextContent(state.voiceHudLabel, "[ ✦ FOCUS -> NEXT STUDY CARD ]", 4.0);
+                setTextContent(state.voiceHudLabel, "[ ? FOCUS -> NEXT STUDY CARD ]", 4.0);
                 state.voiceHudTimer = 2.0;
             }
         }
@@ -2657,13 +2736,13 @@ function handleVoiceCommand(cmd) {
         if (typeof global.infinityFocusPrevious === "function") {
             global.infinityFocusPrevious();
             if (state.voiceHud && state.voiceHudLabel) {
-                setTextContent(state.voiceHudLabel, "[ ✦ FOCUS -> PREVIOUS STUDY CARD ]", 4.0);
+                setTextContent(state.voiceHudLabel, "[ ? FOCUS -> PREVIOUS STUDY CARD ]", 4.0);
                 state.voiceHudTimer = 2.0;
             }
         }
     } else if (c.indexOf("select") !== -1 || c.indexOf("open card") !== -1 || c.indexOf("activate") !== -1) {
         if (state.voiceHud && state.voiceHudLabel) {
-            setTextContent(state.voiceHudLabel, "[ ✦ STUDY CARD ACTIVATED VIA FOCUS ]", 4.2);
+            setTextContent(state.voiceHudLabel, "[ ? STUDY CARD ACTIVATED VIA FOCUS ]", 4.2);
             state.voiceHudTimer = 2.5;
         }
         triggerAudioRipple(new vec3(0, 0, -66.0));
@@ -2677,7 +2756,7 @@ function handleVoiceCommand(cmd) {
             }
         }
         if (state.voiceHud && state.voiceHudLabel) {
-            setTextContent(state.voiceHudLabel, "[ ✦ NOTES CLEARED VIA VOICE ]", 4.2);
+            setTextContent(state.voiceHudLabel, "[ ? NOTES CLEARED VIA VOICE ]", 4.2);
             state.voiceHudTimer = 2.5;
         }
     } else if (c.indexOf("replay") !== -1 || c.indexOf("tutorial") !== -1) {
@@ -2691,7 +2770,7 @@ function handleVoiceCommand(cmd) {
         if (state.notes && state.notes.length > 0 && state.noteEditor) {
             state.noteEditor.openEditor(state.notes[0]);
             if (state.voiceHud && state.voiceHudLabel) {
-                setTextContent(state.voiceHudLabel, "[ ✦ 3D NOTE EDITOR OPENED FOR NOTE 1 ]", 4.0);
+                setTextContent(state.voiceHudLabel, "[ ? 3D NOTE EDITOR OPENED FOR NOTE 1 ]", 4.0);
                 applyMaterialStyle(state.voiceHud, null, new vec4(0.0, 0.94, 1.0, 0.95));
                 state.voiceHudTimer = 2.5;
             }
@@ -2706,7 +2785,7 @@ global.infinityVoiceCommand = handleVoiceCommand;
 function infinityDictateVoiceNote(dictatedText) {
     var wsKey = state.focusedWorkspace || "Think";
     var title = "5. QUANTUM TELEPORTATION";
-    var body = dictatedText || "• Entanglement-assisted state transfer\n• Verified via Bell basis measurement\n[x] Quantum channel active";
+    var body = dictatedText || "deg Entanglement-assisted state transfer\ndeg Verified via Bell basis measurement\n[x] Quantum channel active";
 
     var newId = "StickyNote_Voice_" + Math.floor(state.time || 1);
     var newObj = getOrCreateObject(newId, script.boxMesh, script.pbrMaterial);
@@ -2716,13 +2795,33 @@ function infinityDictateVoiceNote(dictatedText) {
     var spawnPos = new vec3(2.0, 6.5, -66.0);
     newObj.getTransform().setWorldScale(new vec3(13.2, 8.2, 0.5));
     newObj.getTransform().setWorldPosition(spawnPos);
-    applyMaterialStyle(newObj, null, new vec4(0.08, 0.12, 0.22, 0.94));
+    applyMaterialStyle(newObj, null, new vec4(0.08, 0.16, 0.28, 0.98), RENDER_ORDER_CARD, true);
 
-    lblObj.getTransform().setWorldPosition(new vec3(spawnPos.x, spawnPos.y, spawnPos.z + 0.8));
+    lblObj.getTransform().setWorldPosition(new vec3(spawnPos.x, spawnPos.y, spawnPos.z + 0.75));
+
+    var editBtn = getOrCreateObject("Button_Edit_" + newId, script.boxMesh, script.pbrMaterial);
+    editBtn.getTransform().setWorldScale(new vec3(2.6, 1.4, 0.25));
+    editBtn.getTransform().setWorldPosition(new vec3(spawnPos.x + 4.8, spawnPos.y + 2.8, spawnPos.z + 0.5));
+    applyMaterialStyle(editBtn, null, new vec4(0.0, 0.85, 1.0, 0.90), RENDER_ORDER_CARD);
+
+    var editLbl = getOrCreateText3D("Label_Edit_" + newId, "[ ✎ ]", 2.2, new vec4(1.0, 1.0, 1.0, 1.0), RENDER_ORDER_TEXT, true);
+    editLbl.getTransform().setWorldPosition(new vec3(spawnPos.x + 4.8, spawnPos.y + 2.8, spawnPos.z + 0.75));
+
+    var delBtn = getOrCreateObject("Button_Del_" + newId, script.boxMesh, script.pbrMaterial);
+    delBtn.getTransform().setWorldScale(new vec3(2.6, 1.4, 0.25));
+    delBtn.getTransform().setWorldPosition(new vec3(spawnPos.x - 4.8, spawnPos.y + 2.8, spawnPos.z + 0.5));
+    applyMaterialStyle(delBtn, null, new vec4(1.0, 0.3, 0.25, 0.90), RENDER_ORDER_CARD);
+
+    var delLbl = getOrCreateText3D("Label_Del_" + newId, "[ ✕ ]", 2.2, new vec4(1.0, 1.0, 1.0, 1.0), RENDER_ORDER_TEXT, true);
+    delLbl.getTransform().setWorldPosition(new vec3(spawnPos.x - 4.8, spawnPos.y + 2.8, spawnPos.z + 0.75));
 
     var noteEntry = {
         obj: newObj,
         labelObj: lblObj,
+        editBtn: editBtn,
+        editLabel: editLbl,
+        deleteBtn: delBtn,
+        deleteLabel: delLbl,
         id: newId,
         cfg: { id: newId, title: title, body: body, status: "ANCHORED", basePos: spawnPos },
         status: "ANCHORED",
@@ -2737,11 +2836,11 @@ function infinityDictateVoiceNote(dictatedText) {
     triggerAudioRipple(spawnPos);
 
     if (state.voiceHud && state.voiceHudLabel) {
-        setTextContent(state.voiceHudLabel, "[ 🎙️ VOICE NOTE ADDED: " + title + " ]", 4.2);
+        setTextContent(state.voiceHudLabel, "[ ??? VOICE NOTE ADDED: " + title + " ]", 4.2);
         applyMaterialStyle(state.voiceHud, null, new vec4(1.0, 0.75, 0.08, 0.95));
         state.voiceHudTimer = 3.5;
     }
-    print("[INFINITY VOICE] ✓ Voice note created: " + title);
+    print("[INFINITY VOICE] ? Voice note created: " + title);
     return noteEntry;
 }
 global.infinityDictateVoiceNote = infinityDictateVoiceNote;
@@ -2768,7 +2867,7 @@ function exportWorkspaceDocument() {
         state.exportModal.getTransform().setWorldScale(new vec3(36.0, 24.0, 0.5));
         applyMaterialStyle(state.exportModal, null, new vec4(0.05, 0.08, 0.16, 0.96));
 
-        var modalTitle = getOrCreateText3D("Label_Export_Modal_Title", "[ 🌌 INFINITY // EXPORTED KNOWLEDGE VAULT ]", 4.8, new vec4(1.0, 0.85, 0.20, 1.0));
+        var modalTitle = getOrCreateText3D("Label_Export_Modal_Title", "[ ?? INFINITY // EXPORTED KNOWLEDGE VAULT ]", 4.8, new vec4(1.0, 0.85, 0.20, 1.0));
         modalTitle.getTransform().setWorldPosition(new vec3(0.0, 11.5, -61.2));
 
         var previewLines = exportResult.markdown.split("\n").slice(0, 7).join("\n");
@@ -2779,7 +2878,7 @@ function exportWorkspaceDocument() {
         syncBtn.getTransform().setWorldPosition(new vec3(-8.0, -7.5, -61.2));
         syncBtn.getTransform().setWorldScale(new vec3(12.0, 2.2, 0.4));
         applyMaterialStyle(syncBtn, null, new vec4(0.0, 0.94, 1.0, 0.92));
-        var syncLbl = getOrCreateText3D("Label_Modal_Sync", "[ 📋 SYNC DESKTOP ]", 3.2, new vec4(1.0, 1.0, 1.0, 1.0));
+        var syncLbl = getOrCreateText3D("Label_Modal_Sync", "[ ?? SYNC DESKTOP ]", 3.2, new vec4(1.0, 1.0, 1.0, 1.0));
         syncLbl.getTransform().setWorldPosition(new vec3(-8.0, -7.5, -60.8));
         state.exportModalSyncBtn = syncBtn;
 
@@ -2787,7 +2886,7 @@ function exportWorkspaceDocument() {
         closeBtn.getTransform().setWorldPosition(new vec3(8.0, -7.5, -61.2));
         closeBtn.getTransform().setWorldScale(new vec3(10.0, 2.2, 0.4));
         applyMaterialStyle(closeBtn, null, new vec4(1.0, 0.2, 0.4, 0.92));
-        var closeLbl = getOrCreateText3D("Label_Modal_Close", "[ ✕ DISMISS ]", 3.2, new vec4(1.0, 1.0, 1.0, 1.0));
+        var closeLbl = getOrCreateText3D("Label_Modal_Close", "[ ? DISMISS ]", 3.2, new vec4(1.0, 1.0, 1.0, 1.0));
         closeLbl.getTransform().setWorldPosition(new vec3(8.0, -7.5, -60.8));
         state.exportModalCloseBtn = closeBtn;
     }
@@ -2796,7 +2895,7 @@ function exportWorkspaceDocument() {
     state.exportModalActive = true;
 
     if (state.voiceHud && state.voiceHudLabel) {
-        setTextContent(state.voiceHudLabel, "[ ✓ SESSION EXPORTED TO VAULT // MD+JSON ]", 4.2);
+        setTextContent(state.voiceHudLabel, "[ ? SESSION EXPORTED TO VAULT // MD+JSON ]", 4.2);
         applyMaterialStyle(state.voiceHud, null, new vec4(0.0, 1.0, 0.66, 0.95));
         state.voiceHudTimer = 3.5;
     }
@@ -2852,6 +2951,22 @@ function handleDragMove(screenPos) {
         var clampedY = Math.max(-16.0, Math.min(14.0, worldPt.y));
         state.draggedNote.curPos = new vec3(clampedX, clampedY, -68.0);
         state.draggedNote.targetPos = state.draggedNote.curPos;
+
+        if (state.draggedNote.labelObj) {
+            state.draggedNote.labelObj.getTransform().setWorldPosition(new vec3(clampedX, clampedY, -68.0 + 0.75));
+        }
+        if (state.draggedNote.editBtn) {
+            state.draggedNote.editBtn.getTransform().setWorldPosition(new vec3(clampedX + 4.8, clampedY + 2.8, -68.0 + 0.5));
+        }
+        if (state.draggedNote.editLabel) {
+            state.draggedNote.editLabel.getTransform().setWorldPosition(new vec3(clampedX + 4.8, clampedY + 2.8, -68.0 + 0.75));
+        }
+        if (state.draggedNote.deleteBtn) {
+            state.draggedNote.deleteBtn.getTransform().setWorldPosition(new vec3(clampedX - 4.8, clampedY + 2.8, -68.0 + 0.5));
+        }
+        if (state.draggedNote.deleteLabel) {
+            state.draggedNote.deleteLabel.getTransform().setWorldPosition(new vec3(clampedX - 4.8, clampedY + 2.8, -68.0 + 0.75));
+        }
 
         if (state.ftueOnboarding && state.ftueOnboarding.isActive()) {
             state.ftueOnboarding.advance(1);
@@ -2960,6 +3075,60 @@ function handleTapOrPinch(screenPos) {
         }
     }
 
+    // 0e. Check Workspace Selector Pill ([ THINK ▾ ])
+    if (state.workspacePill) {
+        var wpPos = state.workspacePill.getTransform().getWorldPosition();
+        var wpHit = raycast3D(screenPos, wpPos, 8.0);
+        if (wpHit.hit) {
+            triggerAudioRipple(wpPos);
+            var wsOrder = ["Think", "Create", "Learn", "Store", "Explore"];
+            var curWsIdx = wsOrder.indexOf(state.focusedWorkspace || "Think");
+            var nextWs = wsOrder[(curWsIdx + 1) % wsOrder.length];
+            enterFocusMode(nextWs);
+            return;
+        }
+    }
+
+    // 0f. Check Note Action Pills ([ ✎ EDIT ] and [ ✕ DELETE ])
+    for (var a = 0; a < state.notes.length; a++) {
+        var an = state.notes[a];
+        if (an.editBtn) {
+            var ebPos = an.editBtn.getTransform().getWorldPosition();
+            var ebHit = raycast3D(screenPos, ebPos, 3.5);
+            if (ebHit.hit) {
+                triggerAudioRipple(ebPos);
+                if (state.noteEditor) {
+                    state.noteEditor.openEditor(an);
+                    if (state.voiceHud && state.voiceHudLabel) {
+                        setTextContent(state.voiceHudLabel, "[ ✦ 3D NOTE EDITOR OPENED ]", 4.0);
+                        applyMaterialStyle(state.voiceHud, null, new vec4(0.0, 0.94, 1.0, 0.95));
+                        state.voiceHudTimer = 2.5;
+                    }
+                }
+                return;
+            }
+        }
+        if (an.deleteBtn) {
+            var dbPos = an.deleteBtn.getTransform().getWorldPosition();
+            var dbHit = raycast3D(screenPos, dbPos, 3.5);
+            if (dbHit.hit) {
+                triggerAudioRipple(dbPos);
+                if (an.obj) an.obj.destroy();
+                if (an.labelObj) an.labelObj.destroy();
+                if (an.editBtn) an.editBtn.destroy();
+                if (an.editLabel) an.editLabel.destroy();
+                if (an.deleteBtn) an.deleteBtn.destroy();
+                if (an.deleteLabel) an.deleteLabel.destroy();
+                state.notes.splice(a, 1);
+                if (state.voiceHud && state.voiceHudLabel) {
+                    setTextContent(state.voiceHudLabel, "[ ✦ NOTE REMOVED ]", 4.0);
+                    state.voiceHudTimer = 2.0;
+                }
+                return;
+            }
+        }
+    }
+
     // 1. Check AI Assistant Core
     var aiCore = findObjectByName("AI_Assistant_Core");
     if (aiCore) {
@@ -2996,7 +3165,7 @@ function handleTapOrPinch(screenPos) {
                         state.noteEditor.openEditor(note);
                         triggerAudioRipple(note.curPos);
                         if (state.voiceHud && state.voiceHudLabel) {
-                            setTextContent(state.voiceHudLabel, "[ ✦ 3D NOTE EDITOR OPENED ]", 4.0);
+                            setTextContent(state.voiceHudLabel, "[ ? 3D NOTE EDITOR OPENED ]", 4.0);
                             applyMaterialStyle(state.voiceHud, null, new vec4(0.0, 0.94, 1.0, 0.95));
                             state.voiceHudTimer = 2.5;
                         }
@@ -3127,3 +3296,63 @@ if (typeof global.infinitySetFocusTargets !== "function") {
         _focusIndex = 0;
     };
 }
+
+// ------------------------------------------------------------------------------
+// Automated 90-Second Demo Sequence for Screen Recording (Devpost Hackathon)
+// ------------------------------------------------------------------------------
+global.infinityRunFullDemoSequence = function() {
+    print("\n=======================================================");
+    print("?? [INFINITY DEMO] STARTING 90-SECOND AUTOMATED SHOWCASE");
+    print("=======================================================\n");
+
+    function narrate(text) {
+        if (typeof global.infinityVoiceInterimUpdate === "function") {
+            global.infinityVoiceInterimUpdate("? [DEMO] " + text);
+        }
+        print("?? [DEMO NARRATION] " + text);
+    }
+
+    var timeline = [
+        { t: 1.0,  fn: function() { narrate("ACT 1: 6DoF Spatial Whiteboard & Virtual Desk Online"); } },
+        { t: 4.5,  fn: function() { narrate("Calibrating desk against physical room mesh..."); global.infinityVoiceCommand("table"); } },
+        { t: 9.0,  fn: function() { narrate("Ergonomic height calibration (+5 cm)..."); global.infinityVoiceCommand("desk up"); } },
+        { t: 14.0, fn: function() { narrate("ACT 2: SIK Focus Navigation across Quantum study cards..."); } },
+        { t: 17.5, fn: function() { narrate("Focusing Card 1 (Architecture)..."); global.infinityFocusNext(); } },
+        { t: 21.0, fn: function() { narrate("Focusing Card 2 (SIK Gaze & Pinch)..."); global.infinityFocusNext(); } },
+        { t: 25.0, fn: function() { narrate("Activating Card & Triggering Audio Chime..."); global.infinityVoiceCommand("select"); } },
+        { t: 29.5, fn: function() { narrate("Focusing Card 3 (Constellation Graph Links)..."); global.infinityFocusNext(); } },
+        { t: 34.0, fn: function() { narrate("ACT 3: Cosmic Jump to 'CREATE' Workspace..."); global.infinityVoiceCommand("create"); } },
+        { t: 41.0, fn: function() { narrate("Cosmic Jump to 'LEARN' Workspace (Calculus / Curriculum)..."); global.infinityVoiceCommand("learn"); } },
+        { t: 48.0, fn: function() { narrate("Restoring persistent state -> Return to 'THINK' Lab..."); global.infinityVoiceCommand("think"); } },
+        { t: 54.0, fn: function() { narrate("ACT 4: Hands-free Voice Dictation in AR..."); global.infinityDictateVoiceNote("Wavefunction collapse verified at 432Hz spatial frequency"); } },
+        { t: 60.5, fn: function() { narrate("Live Desktop Companion WebSocket sync..."); global.infinityInjectDesktopSnippet("DESKTOP RESEARCH SYNC", "Imported textbook reference notes from VS Code companion.", "Research"); } },
+        { t: 67.0, fn: function() { narrate("ACT 5: Opening Volumetric 3D Note Editor & Spatial Keyboard..."); global.infinityVoiceCommand("open editor"); } },
+        { t: 76.0, fn: function() { narrate("ACT 6: Exporting Session Document (Markdown + JSON Vault)..."); global.infinityExportSession(); } },
+        { t: 84.0, fn: function() { narrate("? INFINITY SPATIAL OS // SHOWCASE COMPLETE ?"); global.infinityPlayAudioChime(true); } },
+        { t: 88.0, fn: function() { print("\n?? [INFINITY DEMO] 90-SECOND DEMO SEQUENCE COMPLETE!\n"); } }
+    ];
+
+    for (var i = 0; i < timeline.length; i++) {
+        (function(item) {
+            var delayEvt = script.createEvent("DelayedCallbackEvent");
+            delayEvt.bind(function() {
+                try { item.fn(); } catch(e) { print("[DEMO ERROR] " + e); }
+            });
+            delayEvt.reset(item.t);
+        })(timeline[i]);
+    }
+};
+
+var demoKeyEvt = script.createEvent("KeyPressEvent");
+demoKeyEvt.bind(function(evt) {
+    if (evt.key === "D" || evt.key === "Space") {
+        global.infinityRunFullDemoSequence();
+    }
+});
+
+var autoDemoEvt = script.createEvent("DelayedCallbackEvent");
+autoDemoEvt.bind(function() {
+    print("[INFINITY DEMO] Auto-starting 90-second demo sequence now!");
+    global.infinityRunFullDemoSequence();
+});
+autoDemoEvt.reset(2.5);

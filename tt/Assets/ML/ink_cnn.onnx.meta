@@ -1,8 +1,8 @@
-- !<AssetImportMetadata/b4c03d6c-b6df-4b84-91bc-634f46d9113d>
+- !<AssetImportMetadata/aa30cb84-bf04-4c12-86ed-72c5a25f8fba>
   ImportedAssetIds:
-    FileMLAsset: !<reference> be9c98de-f946-42ae-9738-97aa12292296
+    FileMLAsset: !<reference> 809d1386-e9a5-41b9-8dc4-a355805fa49c
   ImporterName: FileMLAssetImporter
-  PrimaryAsset: !<reference> be9c98de-f946-42ae-9738-97aa12292296
+  PrimaryAsset: !<reference> 809d1386-e9a5-41b9-8dc4-a355805fa49c
   PackageType: NotAPackage
   LegacyPackagePolicy: ~
   ExtraData:
@@ -14,7 +14,7 @@
   ImporterSettings: !<FileMLAssetImporterSettings>
     Inputs:
       - !<MLInput>
-        Name: image
+        Name: input
         Shape: {x: 64.000000, y: 64.000000, z: 1.000000}
         Normalizations:
           - scale: 1.000000
@@ -30,7 +30,7 @@
         Texture: !<reference> 00000000-0000-0000-0000-000000000000
     Outputs:
       - !<MLOutput>
-        Name: logits
+        Name: output
         Shape: {x: 1.000000, y: 1.000000, z: 36.000000}
         Normalizations:
           - scale: 1.000000
@@ -107,6 +107,5 @@
             bias: 0.000000
         InputName: ""
         OutputTexture: !<reference> 00000000-0000-0000-0000-000000000000
-  CompressionSettings: !<SingleCompressionSettings>
-    CompressorName: None
-    CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+  CompressionSettings: !<FileCompressionSettings>
+    {}

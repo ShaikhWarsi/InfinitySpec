@@ -23,7 +23,31 @@
     baseTex:
       typeIdx: 9
       value:
-        id: ffffffff-ffff-ffff-ffff-ffffffffffff
+        id: 915761d4-2557-4b51-a9d7-d0cf194ae077
+        sampler:
+          filteringMode: Trilinear
+          wrapModeU: Repeat
+          wrapModeV: Repeat
+          wrapModeW: Repeat
+          borderColor: {x: 1.000000, y: 1.000000, z: 1.000000, w: 1.000000}
+          mipmaps: false
+        type: Texture2D
+    materialParamsTex:
+      typeIdx: 9
+      value:
+        id: 0de32410-bbf6-4058-8143-a3294f0b3d48
+        sampler:
+          filteringMode: Trilinear
+          wrapModeU: Repeat
+          wrapModeV: Repeat
+          wrapModeW: Repeat
+          borderColor: {x: 1.000000, y: 1.000000, z: 1.000000, w: 1.000000}
+          mipmaps: false
+        type: Texture2D
+    normalTex:
+      typeIdx: 9
+      value:
+        id: 6898a4c2-8e75-4ff7-b739-4cf554625a87
         sampler:
           filteringMode: Trilinear
           wrapModeU: Repeat
@@ -38,4 +62,7 @@
     roughness:
       typeIdx: 1
       value: 0.500000
+    uvScale:
+      typeIdx: 1
+      value: 1.000000
   Pass: !<reference> a890f3f8-c796-49d2-8a09-496cee460324
