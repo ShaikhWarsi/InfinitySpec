@@ -32,7 +32,7 @@ function findObject(name: string, root?: SceneObject): SceneObject | null {
 // ------------------------------------------------------------------------------
 // Scenario 1: Initial Startup & 6DoF Grounded Workspace Verification
 // ------------------------------------------------------------------------------
-@component
+// @component
 export class StartupScenario extends Scenario {
     async run(config?: ScenarioConfig): Promise<void> {
         print("[LEAF TEST 1/10] Executing StartupScenario: Verifying 6DoF Workspace...");
@@ -74,17 +74,17 @@ export class StartupScenario extends Scenario {
 // ------------------------------------------------------------------------------
 // Scenario 2: 5 Celestial Workspaces Navigation
 // ------------------------------------------------------------------------------
-@component
+// @component
 export class WorkspaceNavigationScenario extends Scenario {
     async run(config?: ScenarioConfig): Promise<void> {
         print("[LEAF TEST 2/10] Executing WorkspaceNavigationScenario: Testing Navigation...");
 
-        if (typeof global.infinityVoiceCommand !== "function") {
+        if (typeof (global as any).infinityVoiceCommand !== "function") {
             throw new Error("FAIL: global.infinityVoiceCommand interface missing.");
         }
 
         // Switch to Create workspace
-        global.infinityVoiceCommand("create");
+        (global as any).infinityVoiceCommand("create");
         const header = findObject("Label_Whiteboard_Header");
         if (!header) throw new Error("FAIL: Whiteboard header label missing.");
         const txt = header.getComponent("Component.Text3D") as any;
@@ -93,13 +93,13 @@ export class WorkspaceNavigationScenario extends Scenario {
         }
 
         // Switch to Learn workspace
-        global.infinityVoiceCommand("learn");
+        (global as any).infinityVoiceCommand("learn");
         if (txt.text.indexOf("LEARN") === -1) {
             throw new Error(`FAIL: Expected LEARN workspace header, got: ${txt.text}`);
         }
 
         // Return to Think workspace
-        global.infinityVoiceCommand("think");
+        (global as any).infinityVoiceCommand("think");
         if (txt.text.indexOf("QUANTUM") === -1 && txt.text.indexOf("THINK") === -1) {
             throw new Error(`FAIL: Expected QUANTUM/THINK workspace header, got: ${txt.text}`);
         }
@@ -111,7 +111,7 @@ export class WorkspaceNavigationScenario extends Scenario {
 // ------------------------------------------------------------------------------
 // Scenario 3: Sticky Note 3D Interaction & Cylindrical Arc Geometry
 // ------------------------------------------------------------------------------
-@component
+// @component
 export class StickyNoteInteractionScenario extends Scenario {
     async run(config?: ScenarioConfig): Promise<void> {
         print("[LEAF TEST 3/10] Executing StickyNoteInteractionScenario: Testing Cylindrical Math...");
@@ -141,7 +141,7 @@ export class StickyNoteInteractionScenario extends Scenario {
 // ------------------------------------------------------------------------------
 // Scenario 4: Spatial Cognitive State Transitions
 // ------------------------------------------------------------------------------
-@component
+// @component
 export class NoteStateTransitionScenario extends Scenario {
     async run(config?: ScenarioConfig): Promise<void> {
         print("[LEAF TEST 4/10] Executing NoteStateTransitionScenario: Checking States...");
@@ -165,7 +165,7 @@ export class NoteStateTransitionScenario extends Scenario {
 // ------------------------------------------------------------------------------
 // Scenario 5: Cross-Session Persistence
 // ------------------------------------------------------------------------------
-@component
+// @component
 export class PersistenceScenario extends Scenario {
     async run(config?: ScenarioConfig): Promise<void> {
         print("[LEAF TEST 5/10] Executing PersistenceScenario: Checking Storage Integration...");
@@ -183,16 +183,16 @@ export class PersistenceScenario extends Scenario {
 // ------------------------------------------------------------------------------
 // Scenario 6: FTUE 3-Step Holographic Onboarding Lifecycle
 // ------------------------------------------------------------------------------
-@component
+// @component
 export class OnboardingScenario extends Scenario {
     async run(config?: ScenarioConfig): Promise<void> {
         print("[LEAF TEST 6/10] Executing OnboardingScenario: Checking Tutorial Lifecycle...");
 
-        if (!global.FTUEOnboarding) {
+        if (!(global as any).FTUEOnboarding) {
             throw new Error("FAIL: global.FTUEOnboarding class missing.");
         }
 
-        const ftue = new global.FTUEOnboarding("LEAF_TEST_FTUE");
+        const ftue = new (global as any).FTUEOnboarding("LEAF_TEST_FTUE");
         ftue.reset();
 
         if (!ftue.isActive()) throw new Error("FAIL: FTUE failed to activate after reset.");
@@ -214,16 +214,16 @@ export class OnboardingScenario extends Scenario {
 // ------------------------------------------------------------------------------
 // Scenario 7: Session Document Exporter (Markdown & JSON)
 // ------------------------------------------------------------------------------
-@component
+// @component
 export class SessionExportScenario extends Scenario {
     async run(config?: ScenarioConfig): Promise<void> {
         print("[LEAF TEST 7/10] Executing SessionExportScenario: Validating Vault Export...");
 
-        if (typeof global.infinityExportSession !== "function") {
+        if (typeof (global as any).infinityExportSession !== "function") {
             throw new Error("FAIL: global.infinityExportSession interface missing.");
         }
 
-        const exportResult = global.infinityExportSession();
+        const exportResult = (global as any).infinityExportSession();
         if (!exportResult) throw new Error("FAIL: Session export returned null.");
         if (!exportResult.markdown || exportResult.markdown.indexOf("INFINITY // Spatial Thinking Session") === -1) {
             throw new Error("FAIL: Exported markdown missing header.");
@@ -243,12 +243,12 @@ export class SessionExportScenario extends Scenario {
 // ------------------------------------------------------------------------------
 // Scenario 8: Surface Tracking & Table Height Snapping Calibration
 // ------------------------------------------------------------------------------
-@component
+// @component
 export class SurfaceTrackingCalibrationScenario extends Scenario {
     async run(config?: ScenarioConfig): Promise<void> {
         print("[LEAF TEST 8/10] Executing SurfaceTrackingCalibrationScenario: Testing Height Calibration...");
 
-        if (!global.SurfaceTrackingManager) {
+        if (!(global as any).SurfaceTrackingManager) {
             throw new Error("FAIL: global.SurfaceTrackingManager class missing.");
         }
 
@@ -265,7 +265,7 @@ export class SurfaceTrackingCalibrationScenario extends Scenario {
 // ------------------------------------------------------------------------------
 // Scenario 9: Quantum Computing 101 Curriculum Verification
 // ------------------------------------------------------------------------------
-@component
+// @component
 export class QuantumCurriculumScenario extends Scenario {
     async run(config?: ScenarioConfig): Promise<void> {
         print("[LEAF TEST 9/10] Executing QuantumCurriculumScenario: Checking Pre-Populated Courseware...");
@@ -291,7 +291,7 @@ export class QuantumCurriculumScenario extends Scenario {
 // ------------------------------------------------------------------------------
 // Scenario 10: One-Tap Knowledge Graph Synthesis
 // ------------------------------------------------------------------------------
-@component
+// @component
 export class GraphSynthesisScenario extends Scenario {
     async run(config?: ScenarioConfig): Promise<void> {
         print("[LEAF TEST 10/10] Executing GraphSynthesisScenario: Testing AI Synthesis...");

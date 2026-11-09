@@ -1,0 +1,48 @@
+- !<AssetImportMetadata/2383fad7-ebd5-4313-a91b-ce9948c73b1b>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 2e4bfbcb-8dc3-4567-923a-eb3a864a20a6
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 2e4bfbcb-8dc3-4567-923a-eb3a864a20a6
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 23af79c1-9f2b-4989-b94b-5e84ff90330f
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/23af79c1-9f2b-4989-b94b-5e84ff90330f>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: 3998ed2e-c6bc-4bc7-82b8-00ffaea2cd49
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    debugLogging: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - debugLogging: false
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @ui {"widget":"separator"}'
+    - '// @ui {"widget":"label", "label":"<span style=\"color: #00F0FF;\">INFINITY Hand Pose Engine</span>"}'
+    - '// @input bool debugLogging {"hint":"Enable debug print logging."}'

@@ -1,0 +1,61 @@
+- !<AssetImportMetadata/72e4b7ca-8029-484f-b5af-9e646335cb84>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> af82b29f-c737-4d08-9495-7f230fb69405
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> af82b29f-c737-4d08-9495-7f230fb69405
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> f4bca2c7-f593-4909-be12-c08ece9ca22e
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/f4bca2c7-f593-4909-be12-c08ece9ca22e>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: 2629be7b-49d0-4b2c-a15b-3a1d3f765cb1
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    debugLogging: false
+    focusLiftZ: false
+    focusScale: false
+    startIndex: false
+    targets: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - targets: !<reference.SceneObject[]>
+        []
+      startIndex: !<float> 0.000000
+      focusLiftZ: !<float> 1.000000
+      focusScale: 1.080000
+      debugLogging: false
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @ui {"widget":"separator"}'
+    - '// @ui {"widget":"label", "label":"<span style=\"color: #00F0FF;\">INFINITY Focus Navigation Ring</span>"}'
+    - '// @input SceneObject[] targets = {} {"hint":"Ordered list of focusable SceneObjects (study notes, dock buttons)."}'
+    - '// @input float startIndex {"hint":"Starting focused index at lens boot."}'
+    - '// @input float focusLiftZ = 1 {"hint":"Local Z depth lift applied to focused target in cm."}'
+    - '// @input float focusScale = 1.08 {"hint":"Subtle scale multiplier applied to focused target."}'
+    - '// @input bool debugLogging {"hint":"Enable debug print logging."}'

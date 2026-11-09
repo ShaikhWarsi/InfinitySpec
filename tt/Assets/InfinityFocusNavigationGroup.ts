@@ -79,8 +79,8 @@ export class InfinityFocusNavigationGroup extends BaseScriptComponent {
                 const trans = obj.getTransform();
                 this.basePositions.push(trans.getLocalPosition());
                 this.baseScales.push(trans.getLocalScale());
-                const interactable = obj.getComponent("InteractionKit:Interactable") as Interactable ||
-                                     obj.getComponent("Interactable") as Interactable || null;
+                const interactable = ((obj as any).getComponent("InteractionKit:Interactable") as Interactable) ||
+                                     ((obj as any).getComponent("Interactable") as Interactable) || null;
                 this.interactableCache.push(interactable);
             } else {
                 this.basePositions.push(vec3.zero());

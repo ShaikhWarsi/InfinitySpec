@@ -21,6 +21,7 @@ import {
     TargetingMode
 } from "InteractionKit.lspkg/Core/Interactor/Interactor";
 import WorldCameraFinderProvider from "InteractionKit.lspkg/Providers/CameraProvider/WorldCameraFinderProvider";
+import { InteractableHitInfo } from "InteractionKit.lspkg/Providers/TargetProvider/TargetProvider";
 
 export interface FocusSource {
     getFocusedInteractable(): Interactable | null;
@@ -137,8 +138,76 @@ export class InfinityCustomInteractor extends BaseInteractor {
         return this.rayStartPos;
     }
 
+    public get endPoint(): vec3 | null {
+        return this.rayStartPos.add(this.rayDir.uniformScale(this._maxRaycastDistance));
+    }
+
     public get direction(): vec3 {
         return this.rayDir;
+    }
+
+    public get orientation(): quat | null {
+        return quat.quatIdentity();
+    }
+
+    public get distanceToTarget(): number | null {
+        if (!this.currentInteractable) return null;
+        const targetPos = this.currentInteractable.getSceneObject().getTransform().getWorldPosition();
+        return this.rayStartPos.distance(targetPos);
+    }
+
+    public get targetHitPosition(): vec3 | null {
+        if (!this.currentInteractable) return null;
+        return this.currentInteractable.getSceneObject().getTransform().getWorldPosition();
+    }
+
+    public get targetHitInfo(): InteractableHitInfo | null {
+        return null;
+    }
+
+    public get maxRaycastDistance(): number {
+        return this._maxRaycastDistance;
+    }
+
+    public set maxRaycastDistance(value: number) {
+        this._maxRaycastDistance = value;
+    }
+
+    public get activeTargetingMode(): TargetingMode {
+        return TargetingMode.Direct;
+    }
+
+    public get isHoveringCurrentInteractable(): boolean | null {
+        return this.currentInteractable !== null;
+    }
+
+    public get hoveredInteractables(): Interactable[] {
+        return this.currentInteractable ? [this.currentInteractable] : [];
+    }
+
+    public isHoveringInteractable(interactable: Interactable): boolean {
+        return this.currentInteractable === interactable;
+    }
+
+    public isHoveringInteractableHierarchy(interactable: Interactable): boolean {
+        if (!this.currentInteractable) return false;
+        if (this.currentInteractable === interactable) return true;
+        if (typeof (this.currentInteractable as any).isDescendantOf === "function") {
+            return (this.currentInteractable as any).isDescendantOf(interactable);
+        }
+        return false;
+    }
+
+    protected clearCurrentHitInfo(): void {
+        this.currentInteractable = null;
+    }
+
+    public get drawDebug(): boolean {
+        return this._drawDebug;
+    }
+
+    public set drawDebug(debug: boolean) {
+        this._drawDebug = debug;
     }
 
     public get interactionStrength(): number | null {

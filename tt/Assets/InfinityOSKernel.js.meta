@@ -18,7 +18,7 @@
   SvgIcon: ""
   SetupScript:
     code: ""
-  Description: "INFINITY OS Cosmic Spatial Whiteboard Kernel"
+  Description: INFINITY OS Cosmic Spatial Whiteboard Kernel
   VersionMajor: 1
   VersionMinor: 0
   VersionPatch: 0
@@ -28,17 +28,18 @@
   ExportUid: 00000000-0000-0000-0000-000000000000
   PackagePolicy: CanBeUnpacked
   ScriptInputsHidden:
+    boxMesh: false
+    chimeAudio: false
+    pbrMaterial: false
+    sphereMesh: false
     texCreate: false
     texExplore: false
     texLearn: false
     texStore: false
     texThink: false
     texWhiteboard: false
-    boxMesh: false
-    sphereMesh: false
-    torusMesh: false
-    pbrMaterial: false
     textMaterial: false
+    torusMesh: false
   ScriptTypesHidden:
     {}
   ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
@@ -56,11 +57,12 @@
       texStore: !<reference.Texture> 59cc1d36-0377-4c71-b9cf-d57046a01ea9
       texExplore: !<reference.Texture> 4d9fe003-fe8f-4eb6-8125-2069c33b5bdc
       texWhiteboard: !<reference.Texture> ff158ab2-7e11-4889-82e2-726288147307
-      boxMesh: !<reference.Mesh> 3b184a84-7be0-4e71-9ffe-a825f3865dc7
-      sphereMesh: !<reference.Mesh> 192a5bb2-30e3-4279-ad7a-10ae1f4bbdad
-      torusMesh: !<reference.Mesh> 7ff853ab-720a-477f-9181-e51172e72a59
+      boxMesh: !<reference.RenderMesh> 00000000-0000-0000-0000-000000000000
+      sphereMesh: !<reference.RenderMesh> 00000000-0000-0000-0000-000000000000
+      torusMesh: !<reference.RenderMesh> 00000000-0000-0000-0000-000000000000
       pbrMaterial: !<reference.Material> 67635c29-0e90-48f2-92bb-bd314d6662ca
       textMaterial: !<reference.Material> 30caec55-b605-4bb4-857d-4c70cb1f3f81
+      chimeAudio: !<reference.AudioTrackAsset> 00000000-0000-0000-0000-000000000000
   ScriptTypes:
     -
       {}

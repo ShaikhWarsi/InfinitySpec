@@ -1,0 +1,48 @@
+- !<AssetImportMetadata/2842be41-0a2f-4097-a97c-91baa525fdcd>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> bf9131f8-5389-4a5b-9d6e-3b700e4bd4e1
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> bf9131f8-5389-4a5b-9d6e-3b700e4bd4e1
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 174f786f-8d72-444b-87dc-d60f128ee91f
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/174f786f-8d72-444b-87dc-d60f128ee91f>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: 40c31d52-b35d-4d63-92da-6ccb55a469b3
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    modelAsset: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - modelAsset: !<reference.MLAsset> 00000000-0000-0000-0000-000000000000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @ui {"widget":"separator"}'
+    - '// @ui {"widget":"label", "label":"<span style=\"color: #00F0FF;\">INFINITY SnapML Handwriting Engine</span>"}'
+    - '// @input Asset.MLAsset modelAsset {"hint":"ink_cnn.onnx MLAsset from tt/Assets/ML/."}'

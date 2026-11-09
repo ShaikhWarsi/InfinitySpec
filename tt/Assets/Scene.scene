@@ -4,6 +4,8 @@
     - !<own> 00000000-0000-0065-0000-000000000064
     - !<own> 0005641c-028d-459a-0000-000000014b4d
     - !<own> ffffffff-0000-4000-8000-000000000001
+    - !<own> 1299b666-d3d1-4146-9985-ea478d1625bb
+    - !<own> 890b9229-e27a-4334-8cf2-2f254cde0aea
   layers: !<Layers/267ee9a7-aff2-4f9d-9a49-f71214747d03>
     userLayers:
       []
@@ -11,6 +13,8 @@
   RenderPreviewOutput: !<reference> 923415f5-4245-4675-ade1-6d69d6d23e71
   RenderOverlayOutput: !<reference> 00000000-0000-0000-0000-000000000000
   PhysicsRootWorldSettings: !<reference> 00000000-0000-0000-0000-000000000000
+  HiddenInCaptureLayers: 0
+  HiddenInDisplayLayers: 0
   PrefabPreviewEnvironmentInitialized: false
   PrefabPreviewEnvironment: !<reference> 00000000-0000-0000-0000-000000000000
 - !<SceneObject/00000000-0000-0065-0000-000000000064>
@@ -28,6 +32,7 @@
     []
   Components:
     - !<own> 00000000-0000-0065-0000-000000000065
+    - !<own> bf37b546-8896-4898-b446-8b5e9c5e07ba
 - !<Camera/00000000-0000-0065-0000-000000000065>
   PrefabRemaps:
     []
@@ -171,6 +176,95 @@
   FalloffType: None
   FalloffRange: .inf
   ShadowType: None
+- !<SceneObject/1299b666-d3d1-4146-9985-ea478d1625bb>
+  PrefabRemaps:
+    []
+  Name: LEAF Plugin Bridge
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> 1b5852c2-b7e3-461e-b000-532c7b324365
+- !<ScriptComponent/1b5852c2-b7e3-461e-b000-532c7b324365>
+  PrefabRemaps:
+    []
+  Name: MessagingBridge
+  Enabled: true
+  ScriptAsset: !<reference> 9aa407db-2872-4afc-a162-cf7faf2a0f29
+  ScriptInputsDefault:
+    {}
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      {}
+  ScriptTypes:
+    "":
+      {}
+- !<ScriptComponent/29b1b97b-ed62-479d-ae72-3de6c3e97cdd>
+  PrefabRemaps:
+    []
+  Name: AgentInteractScript
+  Enabled: true
+  ScriptAsset: !<reference> 29091811-e792-46be-bfa4-28ddec5f11be
+  ScriptInputsDefault:
+    {}
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      {}
+  ScriptTypes:
+    "":
+      {}
+- !<SceneObject/890b9229-e27a-4334-8cf2-2f254cde0aea>
+  PrefabRemaps:
+    []
+  Name: AiPreviewAgent Handler
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> cd01b2ea-2201-49d2-a989-01c500d9c8eb
+    - !<own> 29b1b97b-ed62-479d-ae72-3de6c3e97cdd
+- !<DeviceTracking/bf37b546-8896-4898-b446-8b5e9c5e07ba>
+  PrefabRemaps:
+    []
+  Name: Device Tracking
+  Enabled: true
+  DeviceTrackingMode: World
+  RotationOptions: !<RotationOptions>
+    InvertRotation: false
+  SurfaceOptions: !<SurfaceOptions>
+    EnhanceWithNativeAR: false
+- !<ScriptComponent/cd01b2ea-2201-49d2-a989-01c500d9c8eb>
+  PrefabRemaps:
+    []
+  Name: AgentInspectScript
+  Enabled: true
+  ScriptAsset: !<reference> 0b25079c-f5bf-4c6d-96c4-f43b89dfa213
+  ScriptInputsDefault:
+    {}
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      {}
+  ScriptTypes:
+    "":
+      {}
 - !<SceneObject/ffffffff-0000-4000-8000-000000000001>
   PrefabRemaps:
     []
@@ -189,11 +283,19 @@
 - !<ScriptComponent/ffffffff-0000-4000-8000-000000000002>
   PrefabRemaps:
     []
-  Name: InfinityKernel
+  Name: InfinityOSKernel
   Enabled: true
   ScriptAsset: !<reference> a87d12f4-7128-4ce6-91d1-678239e248b1
   ScriptInputsDefault:
-    {}
+    texThink: true
+    texCreate: true
+    texLearn: true
+    texStore: true
+    texExplore: true
+    texWhiteboard: true
+    pbrMaterial: true
+    textMaterial: true
+    chimeAudio: true
   ScriptTypesDefault:
     {}
   ScriptInputs:
@@ -204,11 +306,12 @@
       texStore: !<reference.Texture> 59cc1d36-0377-4c71-b9cf-d57046a01ea9
       texExplore: !<reference.Texture> 4d9fe003-fe8f-4eb6-8125-2069c33b5bdc
       texWhiteboard: !<reference.Texture> ff158ab2-7e11-4889-82e2-726288147307
-      boxMesh: !<reference.Mesh> 3b184a84-7be0-4e71-9ffe-a825f3865dc7
-      sphereMesh: !<reference.Mesh> 192a5bb2-30e3-4279-ad7a-10ae1f4bbdad
-      torusMesh: !<reference.Mesh> 7ff853ab-720a-477f-9181-e51172e72a59
+      boxMesh: !<reference.RenderMesh> 3b184a84-7be0-4e71-9ffe-a825f3865dc7
+      sphereMesh: !<reference.RenderMesh> 192a5bb2-30e3-4279-ad7a-10ae1f4bbdad
+      torusMesh: !<reference.RenderMesh> 7ff853ab-720a-477f-9181-e51172e72a59
       pbrMaterial: !<reference.Material> 67635c29-0e90-48f2-92bb-bd314d6662ca
       textMaterial: !<reference.Material> 30caec55-b605-4bb4-857d-4c70cb1f3f81
+      chimeAudio: !<reference.AudioTrackAsset> 00000000-0000-0000-0000-000000000000
   ScriptTypes:
     "":
       {}

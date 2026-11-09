@@ -1,0 +1,63 @@
+- !<AssetImportMetadata/b4ffb285-152e-44a3-af51-abfd645eeb74>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> f4dd183d-d218-4520-b4fc-01f6268aa547
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> f4dd183d-d218-4520-b4fc-01f6268aa547
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 0eb817aa-4bcb-43f6-b18a-2cb870bbfb8a
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/0eb817aa-4bcb-43f6-b18a-2cb870bbfb8a>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: 697165c6-4be0-45a0-87d6-0946301aec9e
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    _drawDebug: false
+    debugLogging: false
+    focusNavigationGroup: false
+    indirectDragThreshold: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - indirectDragThreshold: !<float> 10.000000
+      _drawDebug: false
+      focusNavigationGroup: !<reference.ScriptComponent> 00000000-0000-0000-0000-000000000000
+      debugLogging: false
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @ui {"widget":"separator"}'
+    - '// @ui {"widget":"label", "label":"<span style=\"color: #60A5FA;\">Drag Configuration</span>"}'
+    - '// @ui {"widget":"label", "label":"<span style=\"color: #94A3B8; font-size: 11px;\">Configure drag sensitivity for indirect (raycast) interactions</span>"}'
+    - '// @input float indirectDragThreshold = 10 {"label":"Indirect Drag Threshold", "hint":"Controls the minimum distance (in cm) the hand must move during indirect interaction to be considered a drag. When the distance between the interaction origin position and current position exceeds this threshold, dragging behavior is detected and tracked. Lower values make dragging more sensitive and easier to trigger, while higher values require more deliberate movement before dragging begins."}'
+    - '// @ui {"widget":"separator"}'
+    - '// @ui {"widget":"label", "label":"<span style=\"color: #60A5FA;\">Debug</span>"}'
+    - '// @ui {"widget":"label", "label":"<span style=\"color: #94A3B8; font-size: 11px;\">Visual debugging options for development</span>"}'
+    - '// @input bool _drawDebug {"label":"Draw Debug", "hint":"When enabled, draws debug gizmos in the scene to visualize raycasts, colliders, and other interactor geometry. Useful for troubleshooting targeting issues during development."}'
+    - '// @ui {"widget":"separator"}'
+    - '// @ui {"widget":"label", "label":"<span style=\"color: #00F0FF;\">INFINITY Custom SIK Interactor</span>"}'
+    - '// @input Component.ScriptComponent focusNavigationGroup {"hint":"Focus navigation group managing ordered selectable targets."}'
+    - '// @input bool debugLogging {"hint":"Enable debug print logging for SIK trigger transitions."}'

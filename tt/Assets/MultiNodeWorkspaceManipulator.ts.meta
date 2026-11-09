@@ -1,0 +1,60 @@
+- !<AssetImportMetadata/6e256c80-e29e-4c7c-9f80-1b7fbbeb7517>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 06ff021a-2f17-4dbc-8abe-61e641df7da2
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 06ff021a-2f17-4dbc-8abe-61e641df7da2
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 23aad15e-2927-45a6-ae3a-5da3cb6dd2e9
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/23aad15e-2927-45a6-ae3a-5da3cb6dd2e9>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: fb142f03-c190-491a-b1ee-2d381adbf800
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    dragThresholdCm: false
+    maxScale: false
+    minScale: false
+    tapMaxSec: false
+    workspaceRoot: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - workspaceRoot: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      minScale: 0.250000
+      maxScale: !<float> 4.000000
+      tapMaxSec: !<float> 0.000000
+      dragThresholdCm: !<float> 0.000000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @ui {"widget":"label", "label":"<span style=\"color: #60A5FA;\">MultiNodeWorkspaceManipulator – Two-Hand Workspace Coordination</span>"}'
+    - '// @ui {"widget":"separator"}'
+    - '// @input SceneObject workspaceRoot {"hint":"Workspace root SceneObject driven by the two-hand gesture"}'
+    - '// @input float minScale = 0.25 {"hint":"Minimum uniform scale allowed for workspace"}'
+    - '// @input float maxScale = 4 {"hint":"Maximum uniform scale allowed for workspace"}'
+    - '// @input float tapMaxSec {"hint":"Max duration in seconds for a pinch to register as a tap"}'
+    - '// @input float dragThresholdCm {"hint":"Max motion distance in cm for a pinch to register as a tap"}'

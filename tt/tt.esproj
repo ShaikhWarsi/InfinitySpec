@@ -13,12 +13,12 @@ metaInfo:
     []
   tags:
     - Productivity
+    - Spatial
     - Utility
     - Whiteboard
-    - Spatial
-  lensName: INFINITY // Cosmic Spatial OS
+  lensName: Untitled
   lensDescriptors:
-    []
+    - AI_MUTATED
   lensApplicableContext:
     - live_camera
     - reply_camera
@@ -28,8 +28,6 @@ metaInfo:
     - Back
   lensClientCompatibilities:
     - Spectacles
-    - Mobile
-    - CameraKit
   platformBundlesEnabled: false
   iconHash: ""
   videoPreviewHash: ""

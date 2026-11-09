@@ -1,0 +1,52 @@
+- !<AssetImportMetadata/2f490ace-86ca-4abf-94d8-4b41461ec769>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 8bead0cc-b396-426e-8943-a6ca4295c73e
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 8bead0cc-b396-426e-8943-a6ca4295c73e
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 4d6879df-2542-4fd5-9f58-379b975d47d4
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/4d6879df-2542-4fd5-9f58-379b975d47d4>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: 199784fe-73a9-4e57-8cd0-340fb5bd86b9
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    fallbackDeskHeight: false
+    probeDistance: false
+    worldQueryAsset: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - worldQueryAsset: !<reference.Asset> 00000000-0000-0000-0000-000000000000
+      probeDistance: !<float> 500.000000
+      fallbackDeskHeight: !<float> -18.000000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @input Asset.Asset worldQueryAsset {"hint":"World Query module asset. If empty, resolves from LensStudio:WorldQueryModule."}'
+    - '// @input float probeDistance = 500 {"hint":"Raycast probe distance in cm."}'
+    - '// @input float fallbackDeskHeight = -18 {"hint":"Default desk height fallback when no physical table is found."}'

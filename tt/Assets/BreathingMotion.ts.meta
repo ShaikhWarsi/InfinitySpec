@@ -1,0 +1,52 @@
+- !<AssetImportMetadata/807cc4c2-6ac6-4f96-b49b-a13c0810f0fe>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> a03c7fa5-f73c-478a-9493-5431406fd492
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> a03c7fa5-f73c-478a-9493-5431406fd492
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 7b2cac34-979a-4143-940d-53db73b7a70a
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/7b2cac34-979a-4143-940d-53db73b7a70a>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: ac907243-fec5-4df0-bf10-eb5865e8be7a
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    amplitude: false
+    phaseOffset: false
+    speed: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - amplitude: 0.850000
+      speed: !<float> 6.000000
+      phaseOffset: !<float> 0.000000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @input float amplitude = 0.85 {"hint":"Vertical motion distance in cm"}'
+    - '// @input float speed = 6 {"hint":"Cycles per minute"}'
+    - '// @input float phaseOffset {"hint":"Phase offset in radians"}'

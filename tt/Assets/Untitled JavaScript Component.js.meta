@@ -28,12 +28,18 @@
   ExportUid: 00000000-0000-0000-0000-000000000000
   PackagePolicy: CanBeUnpacked
   ScriptInputsHidden:
+    boxMesh: false
+    chimeAudio: false
+    pbrMaterial: false
+    sphereMesh: false
     texCreate: false
     texExplore: false
     texLearn: false
     texStore: false
     texThink: false
     texWhiteboard: false
+    textMaterial: false
+    torusMesh: false
   ScriptTypesHidden:
     {}
   ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
@@ -49,6 +55,12 @@
       texStore: !<reference.Texture> 00000000-0000-0000-0000-000000000000
       texExplore: !<reference.Texture> 00000000-0000-0000-0000-000000000000
       texWhiteboard: !<reference.Texture> 00000000-0000-0000-0000-000000000000
+      boxMesh: !<reference.Mesh> 00000000-0000-0000-0000-000000000000
+      sphereMesh: !<reference.Mesh> 00000000-0000-0000-0000-000000000000
+      torusMesh: !<reference.Mesh> 00000000-0000-0000-0000-000000000000
+      pbrMaterial: !<reference.Material> 00000000-0000-0000-0000-000000000000
+      textMaterial: !<reference.Material> 00000000-0000-0000-0000-000000000000
+      chimeAudio: !<reference.AudioTrackAsset> 00000000-0000-0000-0000-000000000000
   ScriptTypes:
     -
       {}

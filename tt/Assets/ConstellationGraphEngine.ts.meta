@@ -1,0 +1,54 @@
+- !<AssetImportMetadata/ebb3f0b2-930c-4704-9a5e-c2619e0524a8>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 3444ce5c-4895-4a76-8e5d-7c731c407b9e
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 3444ce5c-4895-4a76-8e5d-7c731c407b9e
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> a1593db6-d71e-4cc4-8269-0ada12d3164c
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/a1593db6-d71e-4cc4-8269-0ada12d3164c>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: f203378f-b1d3-4d84-bf40-28097c5686d9
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    growDurationSec: false
+    layoutIterations: false
+    nodeSpacingCm: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - nodeSpacingCm: !<float> 0.000000
+      layoutIterations: !<float> 0.000000
+      growDurationSec: !<float> 0.000000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @ui {"widget":"label", "label":"<span style=\"color: #60A5FA;\">ConstellationGraphEngine – 3D Force-Directed Galaxy</span>"}'
+    - '// @ui {"widget":"separator"}'
+    - '// @input float nodeSpacingCm {"hint":"Target spacing between adjacent nodes in cm"}'
+    - '// @input float layoutIterations {"hint":"Relaxation iterations for force solve"}'
+    - '// @input float growDurationSec {"hint":"Progressive bloom growth duration in seconds"}'

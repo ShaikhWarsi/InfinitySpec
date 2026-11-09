@@ -1,0 +1,49 @@
+- !<AssetImportMetadata/eae0770f-a964-4047-84fd-f7faf1df8ff5>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 6b644b4c-61af-41e2-8157-df347e98ea1e
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 6b644b4c-61af-41e2-8157-df347e98ea1e
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 3f36c773-5782-4ffd-b6dc-7b08be1ba287
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/3f36c773-5782-4ffd-b6dc-7b08be1ba287>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: 92031fe1-9880-46f7-8989-47fbc32705c7
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    lockRotation: false
+    lockScale: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - lockRotation: true
+      lockScale: true
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @input bool lockRotation = true {"hint":"Lock rotation to initial value"}'
+    - '// @input bool lockScale = true {"hint":"Lock scale to initial value"}'

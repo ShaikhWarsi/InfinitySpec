@@ -1,0 +1,60 @@
+- !<AssetImportMetadata/597eecdf-eda9-41eb-b569-34938a16363a>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 80ad2e30-5c3d-47a0-b198-5338428f47aa
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 80ad2e30-5c3d-47a0-b198-5338428f47aa
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 09d220ec-5352-4b2c-bc2b-01793ad763bc
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/09d220ec-5352-4b2c-bc2b-01793ad763bc>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  VersionPrerelease: ""
+  UpdateOrder: 0
+  ComponentUid: 036e06da-728c-416a-98f9-f63e1492d806
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    aiCoreObject: false
+    fullScale: false
+    handOffsetCm: false
+    lerpSpeed: false
+    minScale: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - aiCoreObject: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      minScale: !<float> 0.000000
+      fullScale: !<float> 0.000000
+      handOffsetCm: !<float> 0.000000
+      lerpSpeed: !<float> 0.000000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @ui {"widget":"label", "label":"<span style=\"color: #60A5FA;\">WristCompanionDock – Hand-Anchored Holographic AI Orb</span>"}'
+    - '// @ui {"widget":"separator"}'
+    - '// @input SceneObject aiCoreObject {"hint":"SceneObject representing the AI Assistant Core"}'
+    - '// @input float minScale {"hint":"Scale factor when docked on the wrist"}'
+    - '// @input float fullScale {"hint":"Scale factor when active in world space"}'
+    - '// @input float handOffsetCm {"hint":"Offset in cm along index tip right vector from pinky knuckle"}'
+    - '// @input float lerpSpeed {"hint":"Exponential lerp factor per frame (0.01 - 1.0)"}'
